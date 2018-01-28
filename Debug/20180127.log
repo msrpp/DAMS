@@ -1,0 +1,443 @@
+[2018-01-27 19:19:33.873652] [0x00002184 [00:00:04int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:19:40.700165] [0x00000860 [00:00:10] [info] recv client msg{
+[2018-01-27 19:19:40.701166] [0x00000860 [00:00:10] [warning] cant find device 123
+[2018-01-27 19:19:45.426138] [0x00002574 [00:00:15] [info] CheckDevOnline start
+[2018-01-27 19:19:48.962528] [0x00002574 [00:00:19] [info] login failed ip reson:7
+[2018-01-27 19:19:59.183732] [0x00000f04 [00:00:03int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:20:05.664118] [0x000019e8 [00:00:10] [info] recv client msg{
+[2018-01-27 19:20:27.453353] [0x000019dc [00:00:31] [info] CheckDevOnline start
+[2018-01-27 19:20:27.456355] [0x000019e8 [00:00:31] [warning] cant find device 123
+[2018-01-27 19:20:38.390533] [0x000019dc [00:00:42] [info] login failed ip reson:7
+[2018-01-27 19:20:49.599690] [0x000019e8 [00:00:53] [info] recv client msg{
+[2018-01-27 19:20:58.987102] [0x00002674 [00:01:03] [info] recv client msg{
+[2018-01-27 19:21:05.095231] [0x00002980 [00:01:09] [info] recv client msg{
+[2018-01-27 19:21:36.324986] [0x000013e8 [00:01:40] [info] recv client msg{
+[2018-01-27 19:23:54.927967] [0x000016a8 [00:00:02int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:23:58.381728] [0x00001ac4 [00:00:06] [info] recv client msg{
+[2018-01-27 19:24:37.590903] [0x000027f8 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:24:40.574262] [0x00001cd8 [00:00:03] [info] recv client msg{
+[2018-01-27 19:25:16.775665] [0x00002f08 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:25:22.193881] [0x000021c0 [00:00:05] [info] recv client msg{
+[2018-01-27 19:28:10.379167] [0x00002454 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:28:18.894878] [0x00002e6c [00:00:08] [info] recv client msg{
+[2018-01-27 19:28:33.494876] [0x00000118 [00:00:23] [info] CheckDevOnline start
+[2018-01-27 19:28:36.242399] [0x00002e6c [00:00:25] [info] recv client msg{
+[2018-01-27 19:28:37.648139] [0x00000118 [00:00:27] [info] login failed ip reson:7
+[2018-01-27 19:28:41.149996] [0x00000118 [00:00:30] [info] login failed ip reson:7
+[2018-01-27 19:28:44.651352] [0x00000118 [00:00:34] [info] login failed ip reson:7
+[2018-01-27 19:29:08.672026] [0x00000118 [00:00:58] [info] login failed ip reson:7
+[2018-01-27 19:29:12.173382] [0x00000118 [00:01:01] [info] login failed ip reson:7
+[2018-01-27 19:29:14.232582] [0x00002e6c [00:01:03] [info] recv client msg{
+[2018-01-27 19:29:15.989494] [0x00000118 [00:01:05] [info] login failed ip reson:7
+[2018-01-27 19:29:15.989994] [0x00002e6c [00:01:05] [warning] cant find device 123
+[2018-01-27 19:29:29.496404] [0x00000118 [00:01:19] [info] login failed ip reson:7
+[2018-01-27 19:29:30.867375] [0x00002e6c [00:01:20] [info] recv client msg{
+[2018-01-27 19:29:50.552799] [0x00001fb0 [00:01:40] [info] recv client msg{
+[2018-01-27 19:36:54.533713] [0x00000f10 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:37:01.965945] [0x00002cb4 [00:00:07] [info] recv client msg{
+[2018-01-27 19:37:19.059172] [0x00002cb4 [00:00:24] [warning] cant find device 123
+[2018-01-27 19:37:19.059172] [0x000027f0 [00:00:24] [info] CheckDevOnline start
+[2018-01-27 19:37:22.827142] [0x00002cb4 [00:00:28] [info] recv client msg{
+[2018-01-27 19:37:22.827142] [0x000027f0 [00:00:28] [info] login failed ip reson:7
+[2018-01-27 19:38:08.511449] [0x00002e5c [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:38:13.359000] [0x00001454 [00:00:04] [info] recv client msg{
+[2018-01-27 19:38:27.596642] [0x00001454 [00:00:19] [warning] cant find device 123
+[2018-01-27 19:38:30.348095] [0x00001454 [00:00:21] [info] recv client msg{
+[2018-01-27 19:38:38.025960] [0x00001454 [00:00:29] [warning] cant find device 123
+[2018-01-27 19:38:38.025960] [0x00002768 [00:00:29] [info] CheckDevOnline start
+[2018-01-27 19:38:41.134356] [0x00001454 [00:00:32] [info] recv client msg{
+[2018-01-27 19:38:43.638335] [0x00002768 [00:00:35] [info] login failed ip reson:7
+[2018-01-27 19:41:28.883351] [0x00000500 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:41:32.503753] [0x000017dc [00:00:03] [info] recv client msg{
+[2018-01-27 19:41:33.608143] [0x000017dc [00:00:04] [warning] cant find device 123
+[2018-01-27 19:41:36.797120] [0x000017dc [00:00:07] [info] recv client msg{
+[2018-01-27 19:41:56.091430] [0x000017dc [00:00:27] [warning] cant find device 123
+[2018-01-27 19:41:58.092358] [0x000020f8 [00:00:29] [info] CheckDevOnline start
+[2018-01-27 19:42:00.999280] [0x000017dc [00:00:32] [info] recv client msg{
+[2018-01-27 19:42:02.609650] [0x000020f8 [00:00:33] [info] login failed ip reson:7
+[2018-01-27 19:42:10.631490] [0x000013ec [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:42:17.443790] [0x000002a0 [00:00:07] [info] recv client msg{
+[2018-01-27 19:42:22.902141] [0x000002a0 [00:00:12] [warning] cant find device 123
+[2018-01-27 19:42:25.186831] [0x000002a0 [00:00:14] [info] recv client msg{
+[2018-01-27 19:42:28.200720] [0x000002a0 [00:00:17] [warning] cant find device 123
+[2018-01-27 19:42:30.303903] [0x000002a0 [00:00:19] [info] recv client msg{
+[2018-01-27 19:42:35.916060] [0x000002a0 [00:00:25] [warning] cant find device 123
+[2018-01-27 19:42:35.916060] [0x00002bfc [00:00:25] [info] CheckDevOnline start
+[2018-01-27 19:42:38.642173] [0x000002a0 [00:00:28] [info] recv client msg{
+[2018-01-27 19:43:22.798590] [0x00002bfc [00:01:04] [info] login failed ip reson:7
+[2018-01-27 19:44:03.508566] [0x000009d8 [00:00:02int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:44:07.390907] [0x00002590 [00:00:05] [info] recv client msg{
+[2018-01-27 19:44:18.030230] [0x00002590 [00:00:16] [warning] cant find device 123
+[2018-01-27 19:44:21.638750] [0x00002590 [00:00:20] [info] recv client msg{
+[2018-01-27 19:44:26.704846] [0x00002590 [00:00:25] [warning] cant find device 123
+[2018-01-27 19:44:28.097087] [0x00000ef4 [00:00:26] [info] CheckDevOnline start
+[2018-01-27 19:44:30.830194] [0x00002590 [00:00:29] [info] recv client msg{
+[2018-01-27 19:44:32.686209] [0x00000ef4 [00:00:31] [info] login failed ip reson:7
+[2018-01-27 19:48:25.395774] [0x00001428 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:48:27.454748] [0x00000be8 [00:00:02] [info] recv client msg{
+[2018-01-27 19:48:59.216116] [0x00000be8 [00:00:33] [warning] cant find device 123
+[2018-01-27 19:48:59.216116] [0x000029f8 [00:00:33] [info] CheckDevOnline start
+[2018-01-27 19:49:01.126948] [0x00000be8 [00:00:35] [info] recv client msg{
+[2018-01-27 19:49:28.988679] [0x000029f8 [00:01:03] [info] login failed ip reson:7
+[2018-01-27 19:49:32.773922] [0x00002b94 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:49:34.972029] [0x00002b44 [00:00:02] [info] recv client msg{
+[2018-01-27 19:50:50.085941] [0x00002b44 [00:01:17] [warning] cant find device 123
+[2018-01-27 19:50:51.089644] [0x00001eec [00:01:18] [info] CheckDevOnline start
+[2018-01-27 19:50:52.014018] [0x00002b44 [00:01:19] [info] recv client msg{
+[2018-01-27 19:51:23.965087] [0x00001eec [00:01:51] [info] login failed ip reson:7
+[2018-01-27 19:51:44.233656] [0x00001960 [00:00:17int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:51:48.522767] [0x0000109c [00:00:21] [info] recv client msg{
+[2018-01-27 19:51:52.481482] [0x0000109c [00:00:25] [warning] cant find device 123
+[2018-01-27 19:51:55.867725] [0x0000109c [00:00:28] [info] recv client msg{
+[2018-01-27 19:52:00.477145] [0x0000109c [00:00:33] [warning] cant find device 123
+[2018-01-27 19:52:02.709108] [0x0000109c [00:00:35] [info] recv client msg{
+[2018-01-27 19:52:03.866217] [0x0000109c [00:00:36] [warning] cant find device 123
+[2018-01-27 19:52:03.948295] [0x00002f9c [00:00:36] [info] CheckDevOnline start
+[2018-01-27 19:52:21.304872] [0x00002f9c [00:00:54] [info] login failed ip reson:7
+[2018-01-27 19:52:27.334994] [0x0000109c [00:01:00] [info] recv client msg{
+[2018-01-27 19:58:52.238649] [0x00000b68 [00:00:04int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 19:58:54.977217] [0x000014f0 [00:00:07] [info] recv client msg{
+[2018-01-27 19:58:56.682350] [0x000014f0 [00:00:08] [warning] cant find device 123
+[2018-01-27 19:58:59.312871] [0x000014f0 [00:00:11] [info] recv client msg{
+[2018-01-27 19:59:00.519528] [0x000014f0 [00:00:12] [warning] cant find device 123
+[2018-01-27 19:59:02.777499] [0x000014f0 [00:00:15] [info] recv client msg{
+[2018-01-27 19:59:04.185348] [0x000014f0 [00:00:16] [warning] cant find device 123
+[2018-01-27 19:59:06.344418] [0x000014f0 [00:00:18] [info] recv client msg{
+[2018-01-27 19:59:07.201239] [0x000014f0 [00:00:19] [warning] cant find device 123
+[2018-01-27 19:59:07.402933] [0x00001ab0 [00:00:19] [info] CheckDevOnline start
+[2018-01-27 19:59:11.892285] [0x000014f0 [00:00:24] [info] recv client msg{
+[2018-01-27 19:59:12.721589] [0x00001ab0 [00:00:25] [info] login failed ip reson:7
+[2018-01-27 20:00:02.297417] [0x00001348 [00:00:05int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:00:04.790307] [0x000013dc [00:00:07] [info] recv client msg{
+[2018-01-27 20:00:07.852802] [0x000013dc [00:00:11] [warning] cant find device 123
+[2018-01-27 20:00:10.463302] [0x000013dc [00:00:13] [info] recv client msg{
+[2018-01-27 20:00:10.463802] [0x000013dc [00:00:13] [warning] cant find device 123
+[2018-01-27 20:00:11.079392] [0x000013dc [00:00:14] [info] recv client msg{
+[2018-01-27 20:00:11.079893] [0x000013dc [00:00:14] [warning] cant find device 123
+[2018-01-27 20:00:11.245552] [0x000013dc [00:00:14] [info] recv client msg{
+[2018-01-27 20:00:11.246052] [0x000013dc [00:00:14] [warning] cant find device 123
+[2018-01-27 20:00:11.414213] [0x000013dc [00:00:14] [info] recv client msg{
+[2018-01-27 20:00:11.414714] [0x000013dc [00:00:14] [warning] cant find device 123
+[2018-01-27 20:00:11.561864] [0x000013dc [00:00:14] [info] recv client msg{
+[2018-01-27 20:00:11.562856] [0x000013dc [00:00:14] [warning] cant find device 123
+[2018-01-27 20:00:11.724511] [0x000013dc [00:00:14] [info] recv client msg{
+[2018-01-27 20:00:11.725011] [0x000013dc [00:00:14] [warning] cant find device 123
+[2018-01-27 20:00:11.871653] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:11.872153] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.015790] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.016290] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.157926] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.158427] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.303567] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.304066] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.451708] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.452714] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.593844] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.594845] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.743487] [0x000013dc [00:00:15] [info] recv client msg{
+[2018-01-27 20:00:12.743988] [0x000013dc [00:00:15] [warning] cant find device 123
+[2018-01-27 20:00:12.870609] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:12.871110] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.017750] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.018753] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.167894] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.168395] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.315035] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.315536] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.474714] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.475189] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.627335] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.627835] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.775477] [0x000013dc [00:00:16] [info] recv client msg{
+[2018-01-27 20:00:13.775977] [0x000013dc [00:00:16] [warning] cant find device 123
+[2018-01-27 20:00:13.915611] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:13.916111] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.062252] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.062752] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.215400] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.215906] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.377554] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.378054] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.535705] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.536206] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.672837] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.673337] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.820979] [0x000013dc [00:00:17] [info] recv client msg{
+[2018-01-27 20:00:14.821480] [0x000013dc [00:00:17] [warning] cant find device 123
+[2018-01-27 20:00:14.856013] [0x00000920 [00:00:18] [info] CheckDevOnline start
+[2018-01-27 20:00:20.269372] [0x000013dc [00:00:23] [info] recv client msg{
+[2018-01-27 20:00:20.877457] [0x00000920 [00:00:24] [info] login failed ip reson:7
+[2018-01-27 20:05:57.315280] [0x000006e0 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:06:07.306619] [0x00001428 [00:00:10] [info] CheckDevOnline start
+[2018-01-27 20:06:13.674870] [0x00001904 [00:00:16] [info] recv client msg{
+[2018-01-27 20:06:13.977160] [0x00001428 [00:00:16] [info] login failed ip reson:7
+[2018-01-27 20:06:17.478874] [0x00001428 [00:00:20] [info] login failed ip reson:7
+[2018-01-27 20:06:20.980731] [0x00001428 [00:00:23] [info] login failed ip reson:7
+[2018-01-27 20:06:20.981231] [0x00001904 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:06:22.713892] [0x00001904 [00:00:25] [info] recv client msg{
+[2018-01-27 20:06:22.714392] [0x00001904 [00:00:25] [warning] cant find device 123
+[2018-01-27 20:06:23.261416] [0x00001904 [00:00:25] [info] recv client msg{
+[2018-01-27 20:06:23.262417] [0x00001904 [00:00:25] [warning] cant find device 123
+[2018-01-27 20:06:23.595237] [0x00001904 [00:00:26] [info] recv client msg{
+[2018-01-27 20:06:23.596238] [0x00001904 [00:00:26] [warning] cant find device 123
+[2018-01-27 20:06:23.742879] [0x00001904 [00:00:26] [info] recv client msg{
+[2018-01-27 20:06:23.743379] [0x00001904 [00:00:26] [warning] cant find device 123
+[2018-01-27 20:06:23.875505] [0x00001904 [00:00:26] [info] recv client msg{
+[2018-01-27 20:06:23.876006] [0x00001904 [00:00:26] [warning] cant find device 123
+[2018-01-27 20:06:24.010635] [0x00001904 [00:00:26] [info] recv client msg{
+[2018-01-27 20:06:24.011140] [0x00001904 [00:00:26] [warning] cant find device 123
+[2018-01-27 20:06:24.146265] [0x00001904 [00:00:26] [info] recv client msg{
+[2018-01-27 20:06:24.146765] [0x00001904 [00:00:26] [warning] cant find device 123
+[2018-01-27 20:06:24.307422] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:24.308420] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:24.449556] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:24.450056] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:24.593694] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:24.594194] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:24.731826] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:24.732327] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:24.879468] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:24.879968] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:25.023107] [0x00001904 [00:00:27] [info] recv client msg{
+[2018-01-27 20:06:25.023606] [0x00001904 [00:00:27] [warning] cant find device 123
+[2018-01-27 20:06:25.299371] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:25.299872] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:25.457522] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:25.458022] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:25.597155] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:25.597656] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:25.764816] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:25.765317] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:25.928473] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:25.928973] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:26.090629] [0x00001904 [00:00:28] [info] recv client msg{
+[2018-01-27 20:06:26.091129] [0x00001904 [00:00:28] [warning] cant find device 123
+[2018-01-27 20:06:26.428953] [0x00001904 [00:00:29] [info] recv client msg{
+[2018-01-27 20:06:26.429954] [0x00001904 [00:00:29] [warning] cant find device 123
+[2018-01-27 20:06:26.618135] [0x00001904 [00:00:29] [info] recv client msg{
+[2018-01-27 20:06:26.618635] [0x00001904 [00:00:29] [warning] cant find device 123
+[2018-01-27 20:06:26.801310] [0x00001904 [00:00:29] [info] recv client msg{
+[2018-01-27 20:06:26.801810] [0x00001904 [00:00:29] [warning] cant find device 123
+[2018-01-27 20:06:26.968470] [0x00001904 [00:00:29] [info] recv client msg{
+[2018-01-27 20:06:26.968971] [0x00001904 [00:00:29] [warning] cant find device 123
+[2018-01-27 20:06:27.150145] [0x00001904 [00:00:29] [info] recv client msg{
+[2018-01-27 20:06:27.151146] [0x00001904 [00:00:29] [warning] cant find device 123
+[2018-01-27 20:06:27.350344] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:27.350836] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:27.513993] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:27.514494] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:27.712683] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:27.713184] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:27.863328] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:27.863828] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:28.059015] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:28.059516] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:28.224174] [0x00001904 [00:00:30] [info] recv client msg{
+[2018-01-27 20:06:28.224674] [0x00001904 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:06:28.396339] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:28.396839] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:28.585520] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:28.586021] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:28.761689] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:28.762690] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:28.918339] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:28.918840] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:29.102015] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:29.102516] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:29.271178] [0x00001904 [00:00:31] [info] recv client msg{
+[2018-01-27 20:06:29.271678] [0x00001904 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:06:29.488386] [0x00001904 [00:00:32] [info] recv client msg{
+[2018-01-27 20:06:29.488903] [0x00001904 [00:00:32] [warning] cant find device 123
+[2018-01-27 20:06:29.700589] [0x00001904 [00:00:32] [info] recv client msg{
+[2018-01-27 20:06:29.701089] [0x00001904 [00:00:32] [warning] cant find device 123
+[2018-01-27 20:06:29.845229] [0x00001904 [00:00:32] [info] recv client msg{
+[2018-01-27 20:06:29.845728] [0x00001904 [00:00:32] [warning] cant find device 123
+[2018-01-27 20:06:29.996873] [0x00001904 [00:00:32] [info] recv client msg{
+[2018-01-27 20:06:29.997373] [0x00001904 [00:00:32] [warning] cant find device 123
+[2018-01-27 20:06:30.158529] [0x00001904 [00:00:32] [info] recv client msg{
+[2018-01-27 20:06:30.159529] [0x00001904 [00:00:32] [warning] cant find device 123
+[2018-01-27 20:06:30.324687] [0x00001904 [00:00:33] [info] recv client msg{
+[2018-01-27 20:06:30.324687] [0x00001904 [00:00:33] [warning] cant find device 123
+[2018-01-27 20:06:30.475332] [0x00001904 [00:00:33] [info] recv client msg{
+[2018-01-27 20:06:30.475832] [0x00001904 [00:00:33] [warning] cant find device 123
+[2018-01-27 20:06:30.661010] [0x00001904 [00:00:33] [info] recv client msg{
+[2018-01-27 20:06:30.661510] [0x00001904 [00:00:33] [warning] cant find device 123
+[2018-01-27 20:06:30.846187] [0x00001904 [00:00:33] [info] recv client msg{
+[2018-01-27 20:06:30.846688] [0x00001904 [00:00:33] [warning] cant find device 123
+[2018-01-27 20:07:31.752390] [0x00001428 [00:01:34] [info] login failed ip reson:7
+[2018-01-27 20:07:33.490547] [0x00001904 [00:01:36] [info] recv client msg{
+[2018-01-27 20:07:47.382068] [0x00001900 [00:01:50] [info] recv client msg{
+[2018-01-27 20:08:01.746291] [0x00002084 [00:02:04] [info] recv client msg{
+[2018-01-27 20:09:41.497856] [0x00000fb0 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:09:46.334495] [0x0000082c [00:00:04] [info] recv client msg{
+[2018-01-27 20:09:47.440872] [0x0000082c [00:00:06] [warning] cant find device 123
+[2018-01-27 20:09:50.438085] [0x0000082c [00:00:09] [info] recv client msg{
+[2018-01-27 20:09:51.096719] [0x0000082c [00:00:09] [warning] cant find device 123
+[2018-01-27 20:09:53.253871] [0x00001fb0 [00:00:11] [info] CheckDevOnline start
+[2018-01-27 20:09:56.382891] [0x0000082c [00:00:14] [info] recv client msg{
+[2018-01-27 20:10:01.799368] [0x00001fb0 [00:00:20] [info] login failed ip reson:7
+[2018-01-27 20:11:00.472764] [0x000014e8 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:11:10.454330] [0x00001fcc [00:00:10] [info] CheckDevOnline start
+[2018-01-27 20:12:20.266439] [0x000020fc [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:12:24.150662] [0x00002d0c [00:00:03] [info] recv client msg{
+[2018-01-27 20:12:25.916857] [0x00002d0c [00:00:05] [warning] cant find device 123
+[2018-01-27 20:12:32.020108] [0x0000186c [00:00:11] [info] CheckDevOnline start
+[2018-01-27 20:12:34.676300] [0x00002d0c [00:00:14] [info] recv client msg{
+[2018-01-27 20:12:47.553132] [0x00000380 [00:00:27] [info] recv client msg{
+[2018-01-27 20:12:50.182152] [0x00001734 [00:00:29] [info] recv client msg{
+[2018-01-27 20:13:15.662365] [0x00000860 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:13:25.651403] [0x00002ec8 [00:00:10] [info] CheckDevOnline start
+[2018-01-27 20:14:00.691148] [0x00001d94 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:14:04.062880] [0x00002584 [00:00:03] [info] recv client msg{
+[2018-01-27 20:14:04.063392] [0x00002584 [00:00:03] [warning] cant find device 123
+[2018-01-27 20:14:04.554352] [0x00002584 [00:00:03] [info] recv client msg{
+[2018-01-27 20:14:04.554852] [0x00002584 [00:00:03] [warning] cant find device 123
+[2018-01-27 20:14:04.943725] [0x00002584 [00:00:04] [info] recv client msg{
+[2018-01-27 20:14:04.944225] [0x00002584 [00:00:04] [warning] cant find device 123
+[2018-01-27 20:14:05.188959] [0x00002584 [00:00:04] [info] recv client msg{
+[2018-01-27 20:14:05.189460] [0x00002584 [00:00:04] [warning] cant find device 123
+[2018-01-27 20:14:05.344609] [0x00002584 [00:00:04] [info] recv client msg{
+[2018-01-27 20:14:05.345109] [0x00002584 [00:00:04] [warning] cant find device 123
+[2018-01-27 20:14:05.533791] [0x00002584 [00:00:04] [info] recv client msg{
+[2018-01-27 20:14:05.534792] [0x00002584 [00:00:04] [warning] cant find device 123
+[2018-01-27 20:14:05.695946] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:05.696446] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:05.849593] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:05.850093] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:06.003256] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:06.004242] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:06.160390] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:06.160891] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:06.327551] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:06.328051] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:06.491708] [0x00002584 [00:00:05] [info] recv client msg{
+[2018-01-27 20:14:06.492209] [0x00002584 [00:00:05] [warning] cant find device 123
+[2018-01-27 20:14:06.667377] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:06.667877] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:06.800504] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:06.801005] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:06.947646] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:06.948146] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:07.108299] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:07.108800] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:07.249435] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:07.249936] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:07.387067] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:07.388067] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:07.520694] [0x00002584 [00:00:06] [info] recv client msg{
+[2018-01-27 20:14:07.521195] [0x00002584 [00:00:06] [warning] cant find device 123
+[2018-01-27 20:14:07.658827] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:07.659329] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:07.801463] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:07.802465] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:07.944101] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:07.944601] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:08.114272] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:08.114764] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:08.256400] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:08.256900] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:08.401038] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:08.401539] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:08.535167] [0x00002584 [00:00:07] [info] recv client msg{
+[2018-01-27 20:14:08.535668] [0x00002584 [00:00:07] [warning] cant find device 123
+[2018-01-27 20:14:08.716341] [0x00002584 [00:00:08] [info] recv client msg{
+[2018-01-27 20:14:08.716841] [0x00002584 [00:00:08] [warning] cant find device 123
+[2018-01-27 20:14:08.858477] [0x00002584 [00:00:08] [info] recv client msg{
+[2018-01-27 20:14:08.858977] [0x00002584 [00:00:08] [warning] cant find device 123
+[2018-01-27 20:14:09.002115] [0x00002584 [00:00:08] [info] recv client msg{
+[2018-01-27 20:14:09.002617] [0x00002584 [00:00:08] [warning] cant find device 123
+[2018-01-27 20:14:09.157264] [0x00002584 [00:00:08] [info] recv client msg{
+[2018-01-27 20:14:09.157763] [0x00002584 [00:00:08] [warning] cant find device 123
+[2018-01-27 20:14:09.496588] [0x00002584 [00:00:08] [info] recv client msg{
+[2018-01-27 20:14:09.497589] [0x00002584 [00:00:08] [warning] cant find device 123
+[2018-01-27 20:14:09.667753] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:09.668263] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:09.849427] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:09.849927] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:10.036106] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:10.036606] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:10.219282] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:10.219782] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:10.363920] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:10.364421] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:10.561611] [0x00002584 [00:00:09] [info] recv client msg{
+[2018-01-27 20:14:10.562611] [0x00002584 [00:00:09] [warning] cant find device 123
+[2018-01-27 20:14:10.683226] [0x0000082c [00:00:10] [info] CheckDevOnline start
+[2018-01-27 20:14:15.665780] [0x00002584 [00:00:15] [info] recv client msg{
+[2018-01-27 20:14:15.666280] [0x00002584 [00:00:15] [warning] cant find device 123
+[2018-01-27 20:14:15.818934] [0x00002584 [00:00:15] [info] recv client msg{
+[2018-01-27 20:14:15.819937] [0x00002584 [00:00:15] [warning] cant find device 123
+[2018-01-27 20:14:15.979080] [0x00002584 [00:00:15] [info] recv client msg{
+[2018-01-27 20:14:15.979581] [0x00002584 [00:00:15] [warning] cant find device 123
+[2018-01-27 20:14:16.117713] [0x00002584 [00:00:15] [info] recv client msg{
+[2018-01-27 20:14:16.118213] [0x00002584 [00:00:15] [warning] cant find device 123
+[2018-01-27 20:14:17.406916] [0x0000082c [00:00:16] [info] login failed ip reson:7
+[2018-01-27 20:14:21.782121] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:21.783122] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:21.927780] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:21.928762] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.085412] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:22.085912] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.226047] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:22.226547] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.355170] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:22.355671] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.484801] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:22.485295] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.633437] [0x00002584 [00:00:21] [info] recv client msg{
+[2018-01-27 20:14:22.633948] [0x00002584 [00:00:21] [warning] cant find device 123
+[2018-01-27 20:14:22.783581] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:22.784082] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:22.922714] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:22.923215] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.065357] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:23.066355] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.192973] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:23.193474] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.329104] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:23.329604] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.471741] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:23.472241] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.626889] [0x00002584 [00:00:22] [info] recv client msg{
+[2018-01-27 20:14:23.627390] [0x00002584 [00:00:22] [warning] cant find device 123
+[2018-01-27 20:14:23.769026] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:23.769526] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:23.917668] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:23.918168] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:24.062307] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:24.062807] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:24.215954] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:24.216454] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:24.401633] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:24.402132] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:24.549275] [0x00002584 [00:00:23] [info] recv client msg{
+[2018-01-27 20:14:24.549781] [0x00002584 [00:00:23] [warning] cant find device 123
+[2018-01-27 20:14:24.688407] [0x00002584 [00:00:24] [info] recv client msg{
+[2018-01-27 20:14:24.688917] [0x00002584 [00:00:24] [warning] cant find device 123
+[2018-01-27 20:14:24.840052] [0x00002584 [00:00:24] [info] recv client msg{
+[2018-01-27 20:14:24.840552] [0x00002584 [00:00:24] [warning] cant find device 123
+[2018-01-27 20:14:30.908783] [0x00002584 [00:00:30] [info] recv client msg{
+[2018-01-27 20:14:30.909283] [0x00002584 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:14:31.058426] [0x00002584 [00:00:30] [info] recv client msg{
+[2018-01-27 20:14:31.058926] [0x00002584 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:14:31.237598] [0x00002584 [00:00:30] [info] recv client msg{
+[2018-01-27 20:14:31.238124] [0x00002584 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:14:31.386742] [0x00002584 [00:00:30] [info] recv client msg{
+[2018-01-27 20:14:31.387241] [0x00002584 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:14:31.528877] [0x00002584 [00:00:30] [info] recv client msg{
+[2018-01-27 20:14:31.529378] [0x00002584 [00:00:30] [warning] cant find device 123
+[2018-01-27 20:14:31.657500] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:31.658001] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:14:31.810147] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:31.810647] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:14:31.968306] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:31.969300] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:14:32.122947] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:32.123447] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:14:32.243061] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:32.243580] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:14:32.394206] [0x00002584 [00:00:31] [info] recv client msg{
+[2018-01-27 20:14:32.394707] [0x00002584 [00:00:31] [warning] cant find device 123
+[2018-01-27 20:34:36.016695] [0x00002094 [00:00:00int __thiscall CDeviceMgr::Init(void) (g:\c++项目\dams\src\devicemgr\devicemgr.cpp:106)] [info] SQLException：1045
+[2018-01-27 20:34:43.663453] [0x00002ad8 [00:00:07] [info] recv client msg{
+[2018-01-27 20:34:43.669458] [0x00002ad8 [00:00:07] [warning] cant find device 123

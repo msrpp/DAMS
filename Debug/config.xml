@@ -1,0 +1,19 @@
+﻿<Config>
+<ServerInfo>
+<ServerName>mmserver</ServerName>
+</ServerInfo>
+<DevIp>127.6.6.6</DevIp>
+<DevPort>8000</DevPort>
+<UsrName>admin</UsrName>
+<Passwd>admin</Passwd>
+<!--数据库地址格式 tcp://127.0.0.1:3306-->
+<DBHostName>tcp://127.0.0.1:3306</DBHostName>
+<DBHostUserName>root</DBHostUserName>
+<DBHostPassword>chenbo</DBHostPassword>
+<DBHostObject>alphe</DBHostObject>
+<!--路径格式为 ./Pic方式 或者 D:/lot_info/DAMS/Debug/Pic 需要手动创建文件夹 注意斜杠方向-->
+<strPicSavePath>./Pic</strPicSavePath>
+<listenPort>5555</listenPort>
+<ServerName>DAMS1</ServerName>
+<picUrl>http://127.0.0.1:5555/?abc=1213</picUrl>
+</Config>

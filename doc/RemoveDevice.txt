@@ -1,0 +1,3 @@
+{
+  "DeviceIndexCode": "123"
+}
