@@ -1,0 +1,8 @@
+http://127.0.0.1:5555/LabelInsert
+
+
+{
+ "DeviceIndexCode":"123",
+ "Channel":2,
+ "TagName":"testTagName"
+}
