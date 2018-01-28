@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\ServerMgr">
+      <UniqueIdentifier>{7cd5e3d6-1e89-4bb3-bb18-e08c6d5e736c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Utils">
+      <UniqueIdentifier>{cac27958-2874-41a8-8265-97fe35b05094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ServerSession">
+      <UniqueIdentifier>{61f0002d-ba44-4b7d-97b3-191cc79d8278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DeviceMgr">
+      <UniqueIdentifier>{083bb075-66ab-4916-a8b5-6576302cdc00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\DealClientMsg">
+      <UniqueIdentifier>{b1941c4c-29f8-4347-9981-cc186ca054a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\HeaderFiles\CommonHeader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\ServerControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\Logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\CserverSession.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\DeviceMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\ServerMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\MessageHandler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ServerMgr\MessageHandler.h">
+      <Filter>源文件\ServerSession</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\DeviceFactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\HikDevice.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\ResourceStorage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\CClientSession.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sqlite\sqlite3_db_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HeaderFiles\DBmanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ServerControl\ServerControl.cpp">
+      <Filter>源文件\ServerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerControl\ServerEntry.cpp">
+      <Filter>源文件\ServerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerControl\config.cpp">
+      <Filter>源文件\ServerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\markup\markup.cpp">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Logger.cpp">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\utils.cpp">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerMgr\MessageHandler.cpp">
+      <Filter>源文件\ServerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeviceMgr\DeviceFactory.cpp">
+      <Filter>源文件\DeviceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeviceMgr\DeviceMgr.cpp">
+      <Filter>源文件\DeviceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerMgr\ServerMgr.cpp">
+      <Filter>源文件\ServerSession</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerMgr\CserverSession.cpp">
+      <Filter>源文件\ServerSession</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeviceMgr\HikDevice.cpp">
+      <Filter>源文件\DeviceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeviceMgr\ResourceStorage.cpp">
+      <Filter>源文件\DeviceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerMgr\CClientSession.cpp">
+      <Filter>源文件\ServerSession</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\sqlite\sqlite3_db_helper.cpp">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\sqlite\sqlite3.c">
+      <Filter>源文件\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DeviceMgr\DBmanager.cpp">
+      <Filter>源文件\DeviceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ServerControl\crash.cpp">
+      <Filter>源文件\ServerMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

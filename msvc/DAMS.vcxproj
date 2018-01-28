@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{21486D02-389B-4454-B56D-F46604F793D3}</ProjectGuid>
+    <RootNamespace>DAMS</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\HeaderFiles;..\include\boost;..\include\libevent;..\include;..\include\sqlite;..\incude\mysql;..\include\mysql;..\include\device;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>MARKUP_STL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\libs\boost;..\libs\libevent;..\libs\json;..\libs\mysql;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <AdditionalDependencies>Ws2_32.lib;libevent.lib;lib_json.lib;HCNetSDK.lib;mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>..\HeaderFiles;..\include\boost;..\include\libevent;..\include;..\include\device;..\include\sqlite;D:\lot组信息汇总\DAMS\include\sqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MARKUP_STL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\libs\boost;..\libs\libevent;..\libs\json;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\HeaderFiles\CClientSession.h" />
+    <ClInclude Include="..\HeaderFiles\CommonHeader.h" />
+    <ClInclude Include="..\HeaderFiles\config.h" />
+    <ClInclude Include="..\HeaderFiles\CserverSession.h" />
+    <ClInclude Include="..\HeaderFiles\DBmanager.h" />
+    <ClInclude Include="..\HeaderFiles\DeviceFactory.h" />
+    <ClInclude Include="..\HeaderFiles\DeviceMgr.h" />
+    <ClInclude Include="..\HeaderFiles\HikDevice.h" />
+    <ClInclude Include="..\HeaderFiles\Logger.h" />
+    <ClInclude Include="..\HeaderFiles\MessageHandler.h" />
+    <ClInclude Include="..\HeaderFiles\ResourceStorage.h" />
+    <ClInclude Include="..\HeaderFiles\ServerControl.h" />
+    <ClInclude Include="..\HeaderFiles\ServerMgr.h" />
+    <ClInclude Include="..\HeaderFiles\utils.h" />
+    <ClInclude Include="..\include\sqlite\sqlite3_db_helper.h" />
+    <ClInclude Include="..\src\ServerMgr\MessageHandler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\include\markup\markup.cpp" />
+    <ClCompile Include="..\include\sqlite\sqlite3.c" />
+    <ClCompile Include="..\include\sqlite\sqlite3_db_helper.cpp" />
+    <ClCompile Include="..\src\DeviceMgr\DBmanager.cpp" />
+    <ClCompile Include="..\src\DeviceMgr\HikDevice.cpp" />
+    <ClCompile Include="..\src\DeviceMgr\DeviceFactory.cpp" />
+    <ClCompile Include="..\src\DeviceMgr\DeviceMgr.cpp" />
+    <ClCompile Include="..\src\DeviceMgr\ResourceStorage.cpp" />
+    <ClCompile Include="..\src\ServerControl\crash.cpp" />
+    <ClCompile Include="..\src\ServerControl\ServerControl.cpp" />
+    <ClCompile Include="..\src\ServerControl\ServerEntry.cpp" />
+    <ClCompile Include="..\src\ServerControl\config.cpp" />
+    <ClCompile Include="..\src\ServerMgr\CClientSession.cpp" />
+    <ClCompile Include="..\src\ServerMgr\CserverSession.cpp" />
+    <ClCompile Include="..\src\ServerMgr\MessageHandler.cpp" />
+    <ClCompile Include="..\src\ServerMgr\ServerMgr.cpp" />
+    <ClCompile Include="..\src\Utils\Logger.cpp" />
+    <ClCompile Include="..\src\Utils\utils.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
