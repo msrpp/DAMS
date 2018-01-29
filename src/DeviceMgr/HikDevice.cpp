@@ -220,9 +220,10 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 	memcpy(&(stVODPara.struBeginTime), &beginTime, sizeof(NET_DVR_TIME));
 	memcpy(&(stVODPara.struEndTime), &endTime, sizeof(NET_DVR_TIME));
 	int iRetVal = -1;
+	int iPlayHandle = -1;
 	do 
 	{
-		int iPlayHandle = NET_DVR_PlayBackByTime_V40(m_iDevHandle, &stVODPara);
+		iPlayHandle = NET_DVR_PlayBackByTime_V40(m_iDevHandle, &stVODPara);
 		if (iPlayHandle < 0)
 		{
 			LOG_WARNING << "NET_DVR_PlayBackByTime_V40 failed error code:" << NET_DVR_GetLastError();
@@ -249,7 +250,10 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 		strGuid = (char*)identify.sLabelIdentify;
 		iRetVal = 0;
 	} while (0);
-
+	if (iPlayHandle >=0)
+	{
+		NET_DVR_StopPlayBack(iPlayHandle);
+	}
 	return iRetVal;
 }
 
