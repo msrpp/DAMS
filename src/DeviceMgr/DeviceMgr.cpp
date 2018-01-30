@@ -1,7 +1,7 @@
 #include "CClientSession.h"
 #include "DeviceMgr.h"
 #include "config.h"
-
+#include "json/json.h"
 bool dirExists(const std::string& dirName_in)
 {
 	DWORD ftyp = GetFileAttributesA(dirName_in.c_str());
@@ -41,10 +41,23 @@ void TimerProc(CDeviceMgr* pDevMgr )
 #define NUMOFFSET 100  
 #define COLNAME 200 
 
-
+char* G2U(const char* gb2312)
+{
+	int len = MultiByteToWideChar(CP_ACP, 0, gb2312, -1, NULL, 0);
+	wchar_t* wstr = new wchar_t[len + 1];
+	memset(wstr, 0, len + 1);
+	MultiByteToWideChar(CP_ACP, 0, gb2312, -1, wstr, len);
+	len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
+	char* str = new char[len + 1];
+	memset(str, 0, len + 1);
+	WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, len, NULL, NULL);
+	if (wstr) delete[] wstr;
+	return str;
+}
 
 int CDeviceMgr::Init()
 {
+
 	string strfolder = CConfig::get_mutable_instance().GetPicSavePath();
 	if (dirExists(strfolder)) {
 		std::cout << "Folder : " << strfolder.c_str() << " exist!" << std::endl;
@@ -90,7 +103,8 @@ int CDeviceMgr::Init()
 			//数据量大的时候最好关闭自动提交
 			pDataConnect->setAutoCommit(0);
 			pDataConnect->setSchema(strDBHostObject.c_str());
-			string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`c_plate_info` varchar(128) COLLATE utf8_bin NOT NULL COMMENT '车牌描述信息',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间');";
+			//string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`c_plate_info` varchar(128)  NOT NULL COMMENT '车牌描述信息',`c_plate_pic_path` varchar(128)  NOT NULL COMMENT '图片地址',`c_device_ip` varchar(128)  NOT NULL COMMENT '超脑IP',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间');";
+			string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`pic_id` bigint(20) AUTO_INCREMENT primary key  NOT NULL COMMENT '图片索引', `c_plate_info` varchar(128)  NOT NULL COMMENT '车牌描述信息',`i_drive_chan` bigint(20) DEFAULT NULL COMMENT '车道号',`c_plate_pic_path` varchar(128)  NOT NULL COMMENT '图片地址',`c_device_ip` varchar(128)  NOT NULL COMMENT '超脑IP',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间')AUTO_INCREMENT=1 ;";
 			pStmt = pDataConnect->createStatement();
 			if (NULL == pDataConnect)
 			{
@@ -98,17 +112,36 @@ int CDeviceMgr::Init()
 			}
 			pStmt->execute(strInitDB.c_str());
 			pDataConnect->commit();
+
 		}
 		catch (sql::SQLException e)
 		{
+
 			int iErr = e.getErrorCode();
 			{
 				LOG_INFO << "SQLException：" << iErr;
 			}
 		}
+
+#if 0
+		//写数据库		   test
+		DB_DATA_PLATEDATA  stPlateData;
+		stPlateData.strCaptureTime = "1111";
+		stPlateData.strCarPlateData = "2222";
+		stPlateData.iCamerID = 1;
+		stPlateData.strPicUrl = "/dit/carimage/201810551145113541.jpg";
+		stPlateData.strIp = CConfig::get_mutable_instance().GetDevIp();
+		stPlateData.iDirChanNum = 2;
+		{
+			LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
+			LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
+			LOG_INFO << "car  iCamerID   " << stPlateData.iCamerID;
+		}
+		CDeviceMgr::get_mutable_instance().AddPlateData2DB(stPlateData);
+#endif
 		return 0;
 	} while (0);
-	
+
 	{
 
 		if (NULL != pStmt)
@@ -215,10 +248,10 @@ int CDeviceMgr::CheckDevOnline()
 				testDevExit = true;
 			}
 			//测试程序end _
-			map<string, AutoBaseDevice>mapCp = GetAllDevice();
-
-			for (DeviceMapIterator iter = mapCp.begin(); iter != mapCp.end(); iter++)
+			boost::lock_guard<boost::mutex> lock(m_mutex4DevMap);
+			for (DeviceMapIterator iter = m_devMap.begin(); iter != m_devMap.end(); iter++)
 			{
+				
 				iter->second->Connect();
 			}
 		}
@@ -229,9 +262,48 @@ int CDeviceMgr::CheckDevOnline()
 }
 
 
-int CDeviceMgr::InsertLabel(string strLabelName, string strDevIndex, int iChannelNo ,string &strGuid)
+int CDeviceMgr::AddPlateData2DB(DB_DATA_PLATEDATA& stPlateData)
 {
-	
+	{
+		LOG_INFO << "AddPlateData2DB start   ";
+	}
+	char chChanNum[32] = { 0 };
+	char chDirChanNum[32] = { 0 };
+	itoa(stPlateData.iCamerID, chChanNum, 10);
+	itoa(stPlateData.iDirChanNum, chDirChanNum, 10);
+	char* pDataRes = G2U(stPlateData.strCarPlateData.c_str());
+	stPlateData.strCarPlateData = pDataRes;
+	//string strPlateDB = "INSERT INTO `tb_car_plate_info` VALUES ('" + stPlateData.strCarPlateData + "', " + string(chDirChanNum) + "','" + stPlateData.strPicUrl + "','" + stPlateData.strIp + "', " + string(chChanNum) + ",'" + stPlateData.strCaptureTime + "');";
+	string strPlateDB = "INSERT INTO `tb_car_plate_info` (c_plate_info,i_drive_chan,c_plate_pic_path,c_device_ip,i_camera_id,c_capture_time) VALUES('" + stPlateData.strCarPlateData + "', " + string(chDirChanNum) + ", '" +stPlateData.strPicUrl + "', '" + stPlateData.strIp + "', " + string(chChanNum) + ", '" + stPlateData.strCaptureTime + "'); ";
+	{
+		LOG_INFO << "strPlateDB: " << strPlateDB.c_str();
+	}
+	try
+	{
+		//pStmt = pDataConnect->createStatement();
+		pStmt->execute(strPlateDB.c_str());
+
+		pDataConnect->commit();
+	}
+	catch (sql::SQLException e)
+	{
+		int iErr = e.getErrorCode();
+		{
+			LOG_INFO << "err: " << iErr;
+
+		}
+	}
+	if (pDataRes)
+	{
+		delete[] pDataRes;
+	}
+
+	return 0;
+}
+
+int CDeviceMgr::InsertLabel(string strLabelName, string strDevIndex, int iChannelNo, string &strGuid)
+{
+
 	AutoBaseDevice device;
 	{
 		m_mutex4DevMap.lock();
@@ -245,25 +317,4 @@ int CDeviceMgr::InsertLabel(string strLabelName, string strDevIndex, int iChanne
 		return -1;
 	}
 	return device->InsertLabel(strLabelName, iChannelNo, strGuid);
-}
-
-int CDeviceMgr::AddPlateData2DB(DB_DATA_PLATEDATA& stPlateData)
-{
-	char chChanNum[32] = { 0 };
-	itoa(stPlateData.iCamerID, chChanNum, 10);
-	string strPlateDB = "INSERT INTO `tb_car_plate_info` VALUES ('" + stPlateData.strCarPlateData + "', '" + string(chChanNum) + "','" + stPlateData.strCaptureTime + "');";
-
-	try
-	{
-		pStmt = pDataConnect->createStatement();
-		pStmt->execute(strPlateDB.c_str());
-
-		pDataConnect->commit();
-	}
-	catch (sql::SQLException e)
-	{
-		int iErr = e.getErrorCode();
-	}
-
-	return 0;
 }

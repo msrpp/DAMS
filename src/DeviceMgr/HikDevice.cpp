@@ -18,10 +18,13 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 	//	return false;
 		
 	//}
-	HikDevice* pDevice = g_initer.m_map[lCommand];
+	//HikDevice* pDevice = g_initer.m_map[pAlarmer->];
 
 	//获取相关事件信息
-	LOG_INFO << "Event happens lcommand =  " << lCommand;
+	{
+		LOG_INFO << "Event happens lcommand =  " << lCommand;
+	}
+
 	switch (lCommand)
 	{
 	
@@ -43,36 +46,75 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 				  LOG_INFO << "car  license  date len:  " << pPic1Len;
 				  LOG_INFO << "car  date len:  " << pPic2Len;
 				  LOG_INFO << "car  Pic num   " << pAlarm->dwPicNum;
+				  LOG_INFO << "car  DriveChan num   " << (int)pAlarm->byDriveChan;
+				  LOG_INFO << "car  Dir num   " << (int)pAlarm->byDir;
+				  LOG_INFO << "car  DetectType num   " << (int)pAlarm->byDetectType;
+				  LOG_INFO << "car  CarDirectionType num   " << (int)pAlarm->byCarDirectionType;
 			  }
 			  
 			  //Carpic name	    以下操作建议另起线程操作
 			  {
 				  //存图片
 				  char chTime[256] = { 0 };
-				  _snprintf(chTime, 256 - 1, "%4d-%02d-%02dT%02d:%02d:%02d.000Z", pAlarm->struSnapFirstPicTime.wYear,
-					  pAlarm->struSnapFirstPicTime.byMonth, pAlarm->struSnapFirstPicTime.byDay, pAlarm->struSnapFirstPicTime.byHour,
-					  pAlarm->struSnapFirstPicTime.byMinute, pAlarm->struSnapFirstPicTime.bySecond);
+				  char chTimeDB[256] = { 0 };
+				  time_t tlocalTime = time(NULL);
+				  struct tm* pstTimer = localtime(&tlocalTime);
+
+				  unsigned int dwY = pstTimer->tm_year + 1900;
+				  unsigned int dwM = pstTimer->tm_mon + 1;
+				  unsigned int dwD = pstTimer->tm_mday;
+				  unsigned int dwH = pstTimer->tm_hour;
+				  unsigned int dwMin = pstTimer->tm_min;
+				  unsigned int dwSec = pstTimer->tm_sec;
+
+				  //mod 修改时间格式
+				  _snprintf(chTime, 256 - 1, "%4d%02d%02d%02d%02d%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
+				  _snprintf(chTimeDB, 256 - 1, "%4d-%02d-%02d %02d:%02d:%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
+
 				  string strfolder = CConfig::get_mutable_instance().GetPicSavePath();
-				  string strFileName1 = strfolder + "/" + "CarData_" + strCarLicense + string(chTime) + ".jpg";
+				  string strFileName1 = strfolder + "/" + "CarData_" + strCarLicense + "_"  + string(chTime)  + ".jpg";
 				  FILE* pFile_Carpic = NULL;
 				  CClientSession session;
 				  string retBody;
 				  string strRetUrl;
-				  if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getPicUrl().c_str(), pPic1, pPic1Len, retBody))
+				  if (CConfig::get_mutable_instance().GetEnablePicSave()==0)
 				  {
-					  Json::Value root;
-					  Json::Reader reader;
-					  try{
-						  if (reader.parse(retBody, root))
-						  {
-							  strRetUrl = root["iMageUrl"].asString();
-						  }
-					  }
-					  catch (...)
+
+					  if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getPicUrl().c_str(), pPic1, pPic1Len, retBody))
 					  {
-						  LOG_WARNING << "parse ret body failed";
+						  Json::Value root;
+						  Json::Reader reader;
+						  try{
+							  if (reader.parse(retBody, root))
+							  {
+								  //strRetUrl = root["imageUrl"].asString();
+
+								  Json::Value strRetUrl1 = root["data"];
+								  string retBodyEx = strRetUrl1["imageUrl"].asString();
+								  strRetUrl = retBodyEx;
+							  }
+							  else
+							  {
+								  strRetUrl = string("recv data error");
+							  }
+
+							  {
+								  LOG_INFO << "car  Pic path Ex  " << strRetUrl.c_str();
+							  }
+						  }
+						  catch (...)
+						  {
+							  strRetUrl = string("recv data error");
+							  LOG_WARNING << "parse ret body failed";
+						  }
+
 					  }
 
+				  }
+				  
+
+				  {
+					  LOG_INFO << "car  Pic path   " << strFileName1.c_str();
 				  }
 
 
@@ -87,17 +129,22 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 					  fclose(pFile_Carpic);
 				  }
 
+				  {
+					  LOG_INFO << "start insert db   " ;
 
+				  }
 				  //写数据库
 				  DB_DATA_PLATEDATA  stPlateData;
-				  stPlateData.strCaptureTime = string(chTime);
+				  stPlateData.strCaptureTime = string(chTimeDB);
 				  stPlateData.strCarPlateData = strCarLicense;
-				  stPlateData.iCamerID = pAlarm->byChanIndex;
+				  stPlateData.iCamerID = (int)pAlarm->byChanIndex;
+				  stPlateData.strPicUrl = strRetUrl;
+				  stPlateData.iDirChanNum = (int)pAlarm->byDriveChan;
+				  stPlateData.strIp = pAlarmer->sDeviceIP/*CConfig::get_mutable_instance().GetDevIp()*/;
 				  {
-					      LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime;
-						  LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData;
+					      LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
+						  LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
 						  LOG_INFO << "car  iCamerID   " << stPlateData.iCamerID;
-
 				  }
 				  CDeviceMgr::get_mutable_instance().AddPlateData2DB(stPlateData);
 	  
@@ -156,7 +203,12 @@ int HikDevice::Connect()
 	if (m_iDevHandle < 0)
 	{
 		LOG_INFO << "login failed ip reson:" << NET_DVR_GetLastError();
+		LOG_INFO << "login failed ip" << m_strIp.c_str();
 		return -1; 
+	}
+	else
+	{
+		LOG_INFO << "login sucessed ip :" << m_strIp.c_str();
 	}
 	g_initer.m_map[m_iDevHandle] = this;
 
@@ -179,6 +231,18 @@ std::map<string, string> HikDevice::GetAllParams()
 	return m_params;
 }
 
+HikDevice::HikDevice()
+:m_pSink(NULL)
+, m_iPort(-1)
+{
+
+}
+
+HikDevice::~HikDevice()
+{
+
+}
+
 void CALLBACK hikStreamCallback(LONG lPlayHandle, DWORD dwDataType, BYTE *pBuffer, DWORD dwBufSize, void *pUser)
 {
 	LOG_INFO << "hikStreamCallback Call suc";
@@ -186,11 +250,11 @@ void CALLBACK hikStreamCallback(LONG lPlayHandle, DWORD dwDataType, BYTE *pBuffe
 }
 int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 {
-// 	if (m_iDevHandle<0)
-// 	{
-// 		LOG_WARNING << "dev login failed";
-// 		return -1;
-// 	}
+	// 	if (m_iDevHandle<0)
+	// 	{
+	// 		LOG_WARNING << "dev login failed";
+	// 		return -1;
+	// 	}
 	SYSTEMTIME time;
 	GetLocalTime(&time);
 	double days;
@@ -220,21 +284,20 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 	memcpy(&(stVODPara.struBeginTime), &beginTime, sizeof(NET_DVR_TIME));
 	memcpy(&(stVODPara.struEndTime), &endTime, sizeof(NET_DVR_TIME));
 	int iRetVal = -1;
-	int iPlayHandle = -1;
-	do 
+	do
 	{
-		iPlayHandle = NET_DVR_PlayBackByTime_V40(m_iDevHandle, &stVODPara);
+		int iPlayHandle = NET_DVR_PlayBackByTime_V40(m_iDevHandle, &stVODPara);
 		if (iPlayHandle < 0)
 		{
 			LOG_WARNING << "NET_DVR_PlayBackByTime_V40 failed error code:" << NET_DVR_GetLastError();
 			break;
 		}
-		if (!NET_DVR_PlayBackControl(iPlayHandle,NET_DVR_PLAYSTART,0,NULL))
+		if (!NET_DVR_PlayBackControl(iPlayHandle, NET_DVR_PLAYSTART, 0, NULL))
 		{
 			LOG_WARNING << "NET_DVR_PlayBackControl failed error code:" << NET_DVR_GetLastError();
 			break;
 		}
-		if (!NET_DVR_SetPlayDataCallBack_V40(iPlayHandle, hikStreamCallback,this))
+		if (!NET_DVR_SetPlayDataCallBack_V40(iPlayHandle, hikStreamCallback, this))
 		{
 			LOG_WARNING << "NET_DVR_SetPlayDataCallBack_V40 failed error code:" << NET_DVR_GetLastError();
 			break;
@@ -242,7 +305,7 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 		NET_DVR_RECORD_LABEL label = { 0 };
 		NET_DVR_LABEL_IDENTIFY identify = { 0 };
 		strncpy((char*)label.sLabelName, strLabelName.c_str(), LABEL_NAME_LEN);
-		if (!NET_DVR_InsertRecordLabel(iPlayHandle,&label,&identify))
+		if (!NET_DVR_InsertRecordLabel(iPlayHandle, &label, &identify))
 		{
 			LOG_WARNING << "NET_DVR_InsertRecordLabel failed error code:" << NET_DVR_GetLastError();
 			break;
@@ -250,24 +313,10 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 		strGuid = (char*)identify.sLabelIdentify;
 		iRetVal = 0;
 	} while (0);
-	if (iPlayHandle >=0)
-	{
-		NET_DVR_StopPlayBack(iPlayHandle);
-	}
+
 	return iRetVal;
 }
 
-HikDevice::HikDevice()
-:m_pSink(NULL)
-, m_iPort(-1)
-{
-
-}
-
-HikDevice::~HikDevice()
-{
-
-}
 
 Initer::Initer()
 {
@@ -286,3 +335,5 @@ Initer::~Initer()
 {
 
 }
+
+

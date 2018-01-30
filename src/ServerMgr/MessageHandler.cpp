@@ -60,6 +60,8 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 				break;
 			}
 
+			string command2 = root["name"].asString();
+
 		}
 		else if (uri.find("DelDevice") != string::npos)
 		{

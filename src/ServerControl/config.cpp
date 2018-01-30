@@ -11,10 +11,15 @@ bool CConfig::LoadConfig(const char* filePath /*= DEFAULT_CONFIG*/)
 	if (markup.FindElem(NULL))
 	{
 		markup.IntoElem();
+		markup.FindElem("ServerName");
+		m_serverName = markup.GetData();
+	}
+
+	if (markup.FindElem(NULL))
+	{
 		markup.FindElem("DevIp");
 		strDevIp = markup.GetData();
 	}
-
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DevPort");
@@ -67,15 +72,17 @@ bool CConfig::LoadConfig(const char* filePath /*= DEFAULT_CONFIG*/)
 		markup.FindElem("listenPort");
 		m_listenPort = atoi(markup.GetData().c_str());
 	}
-	if (markup.FindElem(NULL))
-	{
-		markup.FindElem("serverName");
-		m_serverName = markup.GetData();
-	}
+
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("picUrl");
 		m_picUrl = markup.GetData();
+	}
+
+	if (markup.FindElem(NULL))
+	{
+		markup.FindElem("enablePicSave");
+		m_iEnableSavePic = atoi(markup.GetData().c_str());
 	}
 	return true;
 }

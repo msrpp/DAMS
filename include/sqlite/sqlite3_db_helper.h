@@ -1,4 +1,15 @@
-
+/**	@file sqlite3_db_helper.h
+*   @note HangZhou Hikvision System Technology Co., Ltd. All Right Reserved.
+*   @brief sqlite数据库基本操作
+*
+*	@author liyingtao@hikvision.com
+*	@date 2012年12月11日
+*
+*	@note 历史记录：V1.0.0
+*	@note 
+*
+*	@warning
+*/
 
 #ifndef _SQLITE3_DB_HELPER_H_
 #define _SQLITE3_DB_HELPER_H_

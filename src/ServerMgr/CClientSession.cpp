@@ -171,7 +171,8 @@ CClientSession::http_client_short_link(const char* url, const char* buf, int iBo
 		output_buffer = evhttp_request_get_output_buffer(req);
 		evbuffer_add(output_buffer, buf, iBodyLen);
 		char Content[16] = { 0 };
-		evutil_snprintf(Content, sizeof(buf)-1, "%lu", iBodyLen);
+		//evutil_snprintf(Content, sizeof(buf)-1, "%ld", iBodyLen);
+		itoa(iBodyLen, Content, 10);
 		evhttp_add_header(output_headers, "Content-Length", Content);
 	}
 
@@ -194,9 +195,6 @@ cleanup:
 		evhttp_uri_free(http_uri);
 	event_base_free(base);
 
-#ifdef _WIN32
-	WSACleanup();
-#endif
 
 	return ret;
 }

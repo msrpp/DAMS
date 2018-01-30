@@ -1,3 +1,16 @@
+/**	@file sqlite3_db_helper.cpp
+*   @note HangZhou Hikvision System Technology Co., Ltd. All Right Reserved.
+*   @brief sqlite数据库基本操作
+*
+*	@author liyingtao@hikvision.com
+*	@date 2012年12月11日
+*
+*	@note 历史记录：V1.0.0
+*	@note 
+*
+*	@warning
+*/
+
 #include "sqlite3_db_helper.h"
 
 CDBHelper::CDBHelper(sqlite3* pHDb)

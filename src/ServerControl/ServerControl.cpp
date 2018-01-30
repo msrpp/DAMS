@@ -171,7 +171,7 @@ int CServerControl::Install()
 	SC_HANDLE hService = ::CreateService(
 		hSCM, m_szServerName, m_szServerName,
 		SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS,
-		SERVICE_DEMAND_START, SERVICE_ERROR_NORMAL,
+		SERVICE_AUTO_START, SERVICE_ERROR_NORMAL,
 		strFilePath.c_str(), NULL, NULL, (""), NULL, NULL);
 
 	if (hService == NULL)

@@ -6,11 +6,10 @@ int main(int argsc,char* argsv[])
 {
 	SYSTEMTIME time;
 	GetLocalTime(&time);
-
-	if (time.wYear>2018)
-	{
-		return -1;
-	}
+	//if (time.wYear>2018)
+	//{
+	//	return -1;
+	//}
 #ifdef _WIN32
 	WSADATA WSAData;
 	WSAStartup(0x101, &WSAData);
@@ -34,7 +33,6 @@ int main(int argsc,char* argsv[])
 // 	WaitForSingleObject(m_hSvcStopEvent, INFINITE);
 	CConfig::get_mutable_instance().LoadConfig();
 	CServerControl* pController = &CServerControl::get_mutable_instance();
-/*	*/
 	string serverName = CConfig::get_mutable_instance().GetServerName();
 	pController->Init(serverName.c_str());
 	if (strcmp(argsv[1],"install") == 0)
