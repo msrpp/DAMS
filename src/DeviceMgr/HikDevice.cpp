@@ -250,11 +250,11 @@ void CALLBACK hikStreamCallback(LONG lPlayHandle, DWORD dwDataType, BYTE *pBuffe
 }
 int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 {
-	// 	if (m_iDevHandle<0)
-	// 	{
-	// 		LOG_WARNING << "dev login failed";
-	// 		return -1;
-	// 	}
+	if (m_iDevHandle < 0)
+	{
+		LOG_WARNING << "dev login failed";
+		return -1;
+	}
 	SYSTEMTIME time;
 	GetLocalTime(&time);
 	double days;
