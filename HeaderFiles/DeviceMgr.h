@@ -30,7 +30,10 @@ typedef struct
 {
 	string strCarPlateData;
 	string strCaptureTime;
+	string strIp;
+	string strPicUrl;
 	int iCamerID;
+	int iDirChanNum;
 }DB_DATA_PLATEDATA;
 
 

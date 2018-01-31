@@ -18,11 +18,12 @@ public:
 	virtual map<string, string> GetAllParams();
 
 	virtual int InsertLabel(string strLabelName, int iChannelNo ,string& strGuid);
+	
 public:
 	HikDevice();
 	~HikDevice();
 	int OnDevEvent();
-private:
+
 	CDeviceMgr* m_pSink;
 	string m_strUserName;
 	string m_strPwd;

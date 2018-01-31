@@ -24,7 +24,6 @@ protected:
 };
 typedef boost::shared_ptr<BaseDevice> AutoBaseDevice;
 
-
 class DeviceFactory
 {
 public:

@@ -25,6 +25,7 @@ public:
 	string	GetPicSavePath() { return strPicSavePath; }
 	int getListenPort(){ return m_listenPort; }
 	string getPicUrl(){ return m_picUrl; }
+	int	GetEnablePicSave() { return m_iEnableSavePic; }
 private:
 	string  strDevIp;
 	string  strDevPort;
@@ -40,6 +41,8 @@ private:
 	int m_listenPort;
 	string m_serverName;
 	string m_picUrl;
+
+	int m_iEnableSavePic;
 };
 
 
