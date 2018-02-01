@@ -1,7 +1,7 @@
 #include "MessageHandler.h"
 #include "DeviceMgr.h"
 #include "json/json.h"
-
+#include "ErrorDef.h"
 CMessageHandler::CMessageHandler()
 {
 }
@@ -57,6 +57,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 			}
 			catch (...)
 			{
+				iRetVal = ERROR_PARAMS_WRONG;
 				break;
 			}
 
@@ -67,6 +68,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 		{
 			if (!reader.parse(body, root))
 			{
+				iRetVal = ERROR_PARAMS_WRONG;
 				break;
 			}
 			try
@@ -76,6 +78,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 			}
 			catch (...)
 			{
+				iRetVal = ERROR_PARAMS_WRONG;
 				break;
 			}
 		}
@@ -90,6 +93,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 			for (auto iter = devMap.begin(); iter != devMap.end(); iter++, i++)
 			{
 				map<string, string> devParams = iter->second->GetAllParams();
+				devices[i]["indexcode"] = iter->first.c_str();
 				for (auto itr = devParams.begin(); itr != devParams.end();itr++)
 				{
 					devices[i][itr->first] = itr->second;
@@ -118,6 +122,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 			}
 			catch (...)
 			{
+				iRetVal = ERROR_PARAMS_WRONG;
 				break;
 			}
 
@@ -131,9 +136,15 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 			root["code"] = 0;
 			root["identify"] = strRetGuid;
 			strResponse = writer.write(root);
+			return 0;
 		}
 		iRetVal = 0;
 	} while (0);
-	strResponse = MakeSimpleResponse(iRetVal);
+	if (iRetVal != 0)
+	{
+		LOG_WARNING << "operator failed";
+		strResponse = MakeSimpleResponse(iRetVal);
+	}
+	
 	return 0;
 }

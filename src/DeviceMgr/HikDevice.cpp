@@ -257,9 +257,23 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 	}
 	SYSTEMTIME time;
 	GetLocalTime(&time);
+
+	NET_DVR_RECORD_LABEL label = { 0 };
+	label.struTimeLabel.dwYear = time.wYear;
+	label.struTimeLabel.dwMonth = time.wMonth;
+	label.struTimeLabel.dwDay = time.wDay;
+	label.struTimeLabel.dwHour = time.wHour;
+	label.struTimeLabel.dwMinute = time.wMinute;
+	label.struTimeLabel.dwSecond = time.wSecond;
+	label.dwSize = sizeof(NET_DVR_RECORD_LABEL);
+
+
 	double days;
 	SystemTimeToVariantTime(&time, &days);
+	days -= 0.0006944*5;//5分钟以前
+	VariantTimeToSystemTime(days, &time);
 
+	LOG_INFO << "Insert Label begin " << m_strIp.c_str() << "channo = " << iChannelNo;
 	NET_DVR_TIME beginTime = { 0 };
 	NET_DVR_TIME endTime = { 0 };
 	endTime.dwYear = time.wYear;
@@ -268,7 +282,7 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 	endTime.dwHour = time.wHour;
 	endTime.dwMinute = time.wMinute;
 	endTime.dwSecond = time.wSecond;
-
+	SystemTimeToVariantTime(&time, &days);
 	days -= 0.0006944;//一分钟以前
 	VariantTimeToSystemTime(days, &time);
 
@@ -302,14 +316,35 @@ int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
 			LOG_WARNING << "NET_DVR_SetPlayDataCallBack_V40 failed error code:" << NET_DVR_GetLastError();
 			break;
 		}
-		NET_DVR_RECORD_LABEL label = { 0 };
 		NET_DVR_LABEL_IDENTIFY identify = { 0 };
 		strncpy((char*)label.sLabelName, strLabelName.c_str(), LABEL_NAME_LEN);
-		if (!NET_DVR_InsertRecordLabel(iPlayHandle, &label, &identify))
+
+		bool loop = true;
+		int iTryTimes = 10;
+		do 
 		{
-			LOG_WARNING << "NET_DVR_InsertRecordLabel failed error code:" << NET_DVR_GetLastError();
-			break;
-		}
+			iTryTimes--;
+			if (!NET_DVR_InsertRecordLabel(iPlayHandle, &label, &identify))
+			{
+				int iErrCode = NET_DVR_GetLastError();
+				LOG_WARNING << "NET_DVR_InsertRecordLabel failed error code:" << iErrCode;
+				if (iErrCode != 29 || iTryTimes<0)
+				{
+					loop = false;
+				}
+				else
+				{
+					Sleep(1000);
+				}
+			}
+			else
+			{
+				LOG_INFO << "insert label suc";
+				loop =false;
+			}
+
+		} while (loop);
+
 		strGuid = (char*)identify.sLabelIdentify;
 		iRetVal = 0;
 	} while (0);
