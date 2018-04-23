@@ -12,7 +12,12 @@
 #include "cppconn/prepared_statement.h"  
 #include "cppconn/metadata.h"  
 #include "cppconn/exception.h" 
+#include "cppconn/connection.h" 
 
+
+sql::ConnectOptionsMap* ConnectOptionsMap_New();
+void ConnectOptionsMap_Delete(sql::ConnectOptionsMap *obj);
+void ConnectOptionsMap_Set(sql::ConnectOptionsMap *obj, const char* k, const sql::Variant &v);
 enum DEV_STATUS
 {
 	STATUS_ONLINE = 0,
@@ -32,8 +37,10 @@ typedef struct
 	string strCaptureTime;
 	string strIp;
 	string strPicUrl;
+	string strVehiceColor;
 	int iCamerID;
 	int iDirChanNum;
+	int iVehiceLogo;
 }DB_DATA_PLATEDATA;
 
 
@@ -55,7 +62,7 @@ public:
 
 public:
 	int CheckDevOnline();
-	int InsertLabel(string strLabelName, string strDevIndex, int iChannelNo ,string& strGuid);
+	int InsertLabel(string strLabelName, string strDevIndex, string strTime, int iChannelNo, string& strGuid);
 private:
 	DeviceFactory m_DevCreater;
 /*	CResourceStorage m_resStorageMgr;*/
@@ -67,6 +74,8 @@ private:
 	bool m_bRun;
 	bool testDevExit;
 
+
+	boost::mutex m_mutex4Sql;
 	//sql∂‘œÛ
 	sql::Driver *pDataDriver;
 	sql::Connection *pDataConnect;

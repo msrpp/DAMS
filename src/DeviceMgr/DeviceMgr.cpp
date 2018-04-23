@@ -104,7 +104,7 @@ int CDeviceMgr::Init()
 			pDataConnect->setAutoCommit(0);
 			pDataConnect->setSchema(strDBHostObject.c_str());
 			//string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`c_plate_info` varchar(128)  NOT NULL COMMENT '车牌描述信息',`c_plate_pic_path` varchar(128)  NOT NULL COMMENT '图片地址',`c_device_ip` varchar(128)  NOT NULL COMMENT '超脑IP',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间');";
-			string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`pic_id` bigint(20) AUTO_INCREMENT primary key  NOT NULL COMMENT '图片索引', `c_plate_info` varchar(128)  NOT NULL COMMENT '车牌描述信息',`i_drive_chan` bigint(20) DEFAULT NULL COMMENT '车道号',`c_plate_pic_path` varchar(128)  NOT NULL COMMENT '图片地址',`c_device_ip` varchar(128)  NOT NULL COMMENT '超脑IP',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间')AUTO_INCREMENT=1 ;";
+            string strInitDB = "CREATE TABLE IF NOT EXISTS  `tb_car_plate_info` (`pic_id` bigint(20) AUTO_INCREMENT primary key  NOT NULL COMMENT '图片索引', `c_plate_info` varchar(128)  NOT NULL COMMENT '车牌描述信息',`c_plate_color` varchar(128)  NOT NULL COMMENT '车牌颜色',`i_plate_logo_type` bigint(20) DEFAULT NULL COMMENT '车辆品牌',`i_drive_chan` bigint(20) DEFAULT NULL COMMENT '车道号',`c_plate_pic_path` varchar(128)  NOT NULL COMMENT '图片地址',`c_device_ip` varchar(128)  NOT NULL COMMENT '超脑IP',`i_camera_id` bigint(20) DEFAULT NULL COMMENT '前端相机id',`c_capture_time` varchar(64) COLLATE utf8_bin DEFAULT NULL COMMENT '抓拍时间')AUTO_INCREMENT=1 ;";
 			pStmt = pDataConnect->createStatement();
 			if (NULL == pDataConnect)
 			{
@@ -132,6 +132,8 @@ int CDeviceMgr::Init()
 		stPlateData.strPicUrl = "/dit/carimage/201810551145113541.jpg";
 		stPlateData.strIp = CConfig::get_mutable_instance().GetDevIp();
 		stPlateData.iDirChanNum = 2;
+		stPlateData.strVehiceColor = "黑色";
+		stPlateData.iVehiceLogo = 1;
 		{
 			LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
 			LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
@@ -264,17 +266,23 @@ int CDeviceMgr::CheckDevOnline()
 
 int CDeviceMgr::AddPlateData2DB(DB_DATA_PLATEDATA& stPlateData)
 {
+	m_mutex4Sql.lock();
 	{
 		LOG_INFO << "AddPlateData2DB start   ";
 	}
 	char chChanNum[32] = { 0 };
 	char chDirChanNum[32] = { 0 };
+	char chVehiceLogoType[32] = { 0 };
 	itoa(stPlateData.iCamerID, chChanNum, 10);
 	itoa(stPlateData.iDirChanNum, chDirChanNum, 10);
+	itoa(stPlateData.iVehiceLogo, chVehiceLogoType, 10);
 	char* pDataRes = G2U(stPlateData.strCarPlateData.c_str());
 	stPlateData.strCarPlateData = pDataRes;
+
+	char* pDataRes1 = G2U(stPlateData.strVehiceColor.c_str());
+	stPlateData.strVehiceColor = pDataRes1;
 	//string strPlateDB = "INSERT INTO `tb_car_plate_info` VALUES ('" + stPlateData.strCarPlateData + "', " + string(chDirChanNum) + "','" + stPlateData.strPicUrl + "','" + stPlateData.strIp + "', " + string(chChanNum) + ",'" + stPlateData.strCaptureTime + "');";
-	string strPlateDB = "INSERT INTO `tb_car_plate_info` (c_plate_info,i_drive_chan,c_plate_pic_path,c_device_ip,i_camera_id,c_capture_time) VALUES('" + stPlateData.strCarPlateData + "', " + string(chDirChanNum) + ", '" +stPlateData.strPicUrl + "', '" + stPlateData.strIp + "', " + string(chChanNum) + ", '" + stPlateData.strCaptureTime + "'); ";
+	string strPlateDB = "INSERT INTO `tb_car_plate_info` (c_plate_info,c_plate_color,i_plate_logo_type,i_drive_chan,c_plate_pic_path,c_device_ip,i_camera_id,c_capture_time) VALUES('" + stPlateData.strCarPlateData + "', '" + stPlateData.strVehiceColor + "', " + string(chVehiceLogoType) + ", " + string(chDirChanNum) + ", '" + stPlateData.strPicUrl + "', '" + stPlateData.strIp + "', " + string(chChanNum) + ", '" + stPlateData.strCaptureTime + "'); ";
 	{
 		LOG_INFO << "strPlateDB: " << strPlateDB.c_str();
 	}
@@ -290,31 +298,54 @@ int CDeviceMgr::AddPlateData2DB(DB_DATA_PLATEDATA& stPlateData)
 		int iErr = e.getErrorCode();
 		{
 			LOG_INFO << "err: " << iErr;
-
+			if (iErr == 2006 || iErr == 1046)
+			{
+				pDataConnect->reconnect();
+			}
 		}
 	}
 	if (pDataRes)
 	{
 		delete[] pDataRes;
 	}
-
+	m_mutex4Sql.unlock();
 	return 0;
 }
 
-int CDeviceMgr::InsertLabel(string strLabelName, string strDevIndex, int iChannelNo, string &strGuid)
+int CDeviceMgr::InsertLabel(string strLabelName, string strDeviceIp, string strTime, int iChannelNo, string &strGuid)
 {
 
 	AutoBaseDevice device;
 	{
 		m_mutex4DevMap.lock();
-		device = m_devMap[strDevIndex];
+		int i = 0;
+		//device = m_devMap[strDevIndex];
+		map<string, AutoBaseDevice>::iterator iterFind = m_devMap.begin();
+		for (; iterFind != m_devMap.end(); iterFind++)
+		{
+			map<string, string> devParams = iterFind->second->GetAllParams();
+			string strTemp("ip");
+			map<string, string>::iterator itr = devParams.find(strTemp);
+			if (itr->second == strDeviceIp)
+			{
+				device = iterFind->second;
+				break;
+			}
+		}
 		m_mutex4DevMap.unlock();
 	}
 
 	if (device == NULL)
 	{
-		LOG_WARNING << "cant find device " << strDevIndex;
+		LOG_WARNING << "cant find device " << strDeviceIp.c_str();
 		return -1;
 	}
-	return device->InsertLabel(strLabelName, iChannelNo, strGuid);
+
+	{
+		LOG_INFO << "find device " << strDeviceIp.c_str();
+
+	}
+	
+
+	return device->InsertLabel(strLabelName, strTime, iChannelNo, strGuid);
 }

@@ -9,6 +9,62 @@
 
 static Initer g_initer;
 
+void switchColorData(OUT string& strColorData, IN int iColorData)
+{
+	switch (iColorData)
+	{
+	case 0:
+	case 0xff:
+		strColorData = "其他";
+		break;
+	case 1:
+		strColorData = "白色";
+		break;
+	case 2:
+		strColorData = "银色";
+		break;
+	case 3:
+		strColorData = "灰色";
+		break;
+	case 4:
+		strColorData = "黑色";
+		break;
+	case 5:
+		strColorData = "红色";
+		break;
+	case 6:
+		strColorData = "深蓝";
+		break;
+	case 7:
+		strColorData = "蓝色";
+		break;
+	case 8:
+		strColorData = "黄色";
+		break;
+	case 9:
+		strColorData = "绿色";
+		break;
+	case 10:
+		strColorData = "棕色";
+		break;
+	case 11:
+		strColorData = "粉色";
+		break;
+	case 12:
+		strColorData = "紫色";
+		break;
+	case 13:
+		strColorData = "深灰";
+		break;
+	case 14:
+		strColorData = "青色";
+		break;
+	default:
+		strColorData = "其他";
+		break;
+	}
+	return;
+}
 
 BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAlarmInfo, DWORD dwBufLen, void* pUser)
 {
@@ -50,6 +106,8 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 				  LOG_INFO << "car  Dir num   " << (int)pAlarm->byDir;
 				  LOG_INFO << "car  DetectType num   " << (int)pAlarm->byDetectType;
 				  LOG_INFO << "car  CarDirectionType num   " << (int)pAlarm->byCarDirectionType;
+				  LOG_INFO << "car  Vehice Color   " << (int)pAlarm->struVehicleInfo.byColor;
+				  LOG_INFO << "car  Vehice Logo   " << (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
 			  }
 			  
 			  //Carpic name	    以下操作建议另起线程操作
@@ -141,6 +199,9 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 				  stPlateData.strPicUrl = strRetUrl;
 				  stPlateData.iDirChanNum = (int)pAlarm->byDriveChan;
 				  stPlateData.strIp = pAlarmer->sDeviceIP/*CConfig::get_mutable_instance().GetDevIp()*/;
+				  
+				  switchColorData(stPlateData.strVehiceColor, pAlarm->struVehicleInfo.byColor);
+				  stPlateData.iVehiceLogo = (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
 				  {
 					      LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
 						  LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
@@ -248,15 +309,34 @@ void CALLBACK hikStreamCallback(LONG lPlayHandle, DWORD dwDataType, BYTE *pBuffe
 	LOG_INFO << "hikStreamCallback Call suc";
 	return;
 }
-int HikDevice::InsertLabel(string strLabelName, int iChannelNo, string& strGuid)
+int HikDevice::InsertLabel(string strLabelName, string strTime, int iChannelNo, string& strGuid)
 {
 	if (m_iDevHandle < 0)
 	{
 		LOG_WARNING << "dev login failed";
-		return -1;
+		//return -1;
 	}
-	SYSTEMTIME time;
-	GetLocalTime(&time);
+
+	SYSTEMTIME time = {0};
+
+	if (!strTime.empty())
+	{
+		//NET_DVR_TIME stSDKTime = {0};
+		struct tm stTime = { 0 };
+		sscanf(strTime.c_str(), "%04d-%02d-%02d %02d:%02d:%02d",
+			&stTime.tm_year, &stTime.tm_mon, &stTime.tm_mday, &stTime.tm_hour, &stTime.tm_min, &stTime.tm_sec);
+		time.wYear = (DWORD)stTime.tm_year;
+		time.wMonth = (DWORD)stTime.tm_mon;
+		time.wDay = (DWORD)stTime.tm_mday;
+		time.wHour = (DWORD)stTime.tm_hour;
+		time.wMinute = (DWORD)stTime.tm_min;
+		time.wSecond = (DWORD)stTime.tm_sec;
+	}
+	else
+	{
+		GetLocalTime(&time);
+	}
+
 
 	NET_DVR_RECORD_LABEL label = { 0 };
 	label.struTimeLabel.dwYear = time.wYear;

@@ -1,8 +1,32 @@
 http://127.0.0.1:5555/LabelInsert
-
+*963.-+
+419657506
 
 {
  "DeviceIndexCode":"123",
+ "DeviceIP":"127.0.0.1",
  "Channel":2,
- "TagName":"testTagName"
+ "TagName":"testTagName",
+ "LabelTime":"2018-03-20 09:20:47"
+}
+
+{
+    "deviceIp":"127.0.0.1",
+	"cameraId":"33",
+	"driveChan":"1",
+	"pumpTime":"2018-03-20 09:20:47",
+	"weight":"15",
+	"pumpId":"20"
+
+}
+
+http://127.0.0.1:5555/LabelInsert
+{
+    "deviceIp":"127.0.0.1",
+	"cameraId":"33",
+	"driveChan":"1",
+	"pumpTime":"2018-03-20 09:20:47",
+	"weight":"15",
+	"pumpId":"20"
+
 }

@@ -105,20 +105,40 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 		}
 		else if (uri.find("LabelInsert") != string::npos)
 		{
+			LOG_INFO << "insert lab body" << body;
 			if (!reader.parse(body, root))
 			{
 				break;
 			}
-			string strTagName;
+			string strDeviceIp;
+			string strPumpTime;
 			int iChannelNo = -1;
-			string devIndex;
+			int iWeight = 0;
+			int iPumpId = 0;
+
+			string strTagName;
+			string strWeight;
+			string strPumpId;
+
 			string strRetGuid;
 			try
 			{
-				strTagName = root["tagName"].asString();
-				iChannelNo = root["channel"].asInt();
-				devIndex = root["DeviceIndexCode"].asString();
-				
+				strDeviceIp = root["deviceIp"].asString();
+				iChannelNo = root["cameraId"].asInt();
+				strPumpTime = root["pumpTime"].asString();
+				strWeight = root["weight"].asString();
+				strPumpId = root["pumpId"].asString();
+				//iWeight = root["weight"].asInt();
+				//iPumpId = root["pumpId"].asInt();
+
+				{
+					LOG_INFO << "insert lab ip: " << strDeviceIp.c_str();
+					LOG_INFO << "insert lab chan no: " << iChannelNo;
+					LOG_INFO << "insert lab chan pump time: " << strPumpTime.c_str();
+					LOG_INFO << "insert lab weight: " << strWeight.c_str();
+					LOG_INFO << "insert lab PumpId: " << strPumpId.c_str();
+				}
+				strTagName = strPumpId + "_" + strWeight;
 			}
 			catch (...)
 			{
@@ -126,7 +146,7 @@ int CMessageHandler::Dispatch(string uri, string command, map<string, string>& h
 				break;
 			}
 
-			iRetVal = CDeviceMgr::get_mutable_instance().InsertLabel(strTagName, devIndex, iChannelNo, strRetGuid);
+			iRetVal = CDeviceMgr::get_mutable_instance().InsertLabel(strTagName, strDeviceIp, strPumpTime, iChannelNo, strRetGuid);
 			if (iRetVal != 0)
 			{
 				break;

@@ -17,7 +17,7 @@ public:
 	virtual int DisConnect();
 	virtual map<string, string> GetAllParams();
 
-	virtual int InsertLabel(string strLabelName, int iChannelNo ,string& strGuid);
+	virtual int InsertLabel(string strLabelName, string strTime, int iChannelNo, string& strGuid);
 	
 public:
 	HikDevice();

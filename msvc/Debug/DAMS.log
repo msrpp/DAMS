@@ -1,0 +1,135 @@
+﻿生成启动时间为 2018/4/23 10:35:47。
+     1>项目“D:\git_DAMS\DAMS\msvc\DAMS.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\HeaderFiles /I..\include\boost /I..\include\libevent /I..\include /I..\include\sqlite /I..\incude\mysql /I..\include\mysql /I..\include\device /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D MARKUP_STL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\include\markup\markup.cpp ..\include\sqlite\sqlite3_db_helper.cpp ..\src\DeviceMgr\DBmanager.cpp ..\src\DeviceMgr\HikDevice.cpp ..\src\DeviceMgr\DeviceFactory.cpp ..\src\DeviceMgr\DeviceMgr.cpp ..\src\DeviceMgr\ResourceStorage.cpp ..\src\ServerControl\crash.cpp ..\src\ServerControl\ServerControl.cpp ..\src\ServerControl\ServerEntry.cpp ..\src\ServerControl\config.cpp ..\src\ServerMgr\CClientSession.cpp ..\src\ServerMgr\CserverSession.cpp ..\src\ServerMgr\MessageHandler.cpp ..\src\ServerMgr\ServerMgr.cpp ..\src\Utils\Logger.cpp ..\src\Utils\utils.cpp
+         utils.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         Logger.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         ServerMgr.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\include\mysql\cppconn\sqlstring.h(39): warning C4251: “sql::SQLString::realStr”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLString”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(61): warning C4251: “sql::SQLException::sql_state”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(145): warning C4251: “sql::SQLUnsupportedOptionException::option”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 struct“sql::SQLUnsupportedOptionException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_driver.h(52): warning C4251: “sql::mysql::MySQL_Driver::proxy”: class“boost::scoped_ptr<sql::mysql::NativeAPI::NativeDriverWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Driver”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(175): warning C4251: “sql::mysql::MySQL_Connection::proxy”: class“boost::shared_ptr<sql::mysql::NativeAPI::NativeConnectionWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(179): warning C4251: “sql::mysql::MySQL_Connection::service”: class“boost::scoped_ptr<sql::mysql::MySQL_Statement>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(181): warning C4251: “sql::mysql::MySQL_Connection::intern”: class“boost::scoped_ptr<sql::mysql::MySQL_ConnectionData>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+         MessageHandler.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\include\mysql\cppconn\sqlstring.h(39): warning C4251: “sql::SQLString::realStr”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLString”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(61): warning C4251: “sql::SQLException::sql_state”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(145): warning C4251: “sql::SQLUnsupportedOptionException::option”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 struct“sql::SQLUnsupportedOptionException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_driver.h(52): warning C4251: “sql::mysql::MySQL_Driver::proxy”: class“boost::scoped_ptr<sql::mysql::NativeAPI::NativeDriverWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Driver”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(175): warning C4251: “sql::mysql::MySQL_Connection::proxy”: class“boost::shared_ptr<sql::mysql::NativeAPI::NativeConnectionWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(179): warning C4251: “sql::mysql::MySQL_Connection::service”: class“boost::scoped_ptr<sql::mysql::MySQL_Statement>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(181): warning C4251: “sql::mysql::MySQL_Connection::intern”: class“boost::scoped_ptr<sql::mysql::MySQL_ConnectionData>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(18): warning C4996: 'Json::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(163) : 参见“Json::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(18): warning C4996: 'Json::FastWriter::~FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(166) : 参见“Json::FastWriter::~FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(18): warning C4996: 'Json::FastWriter::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(165) : 参见“Json::FastWriter::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(19): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(91): warning C4996: 'Json::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(163) : 参见“Json::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(91): warning C4996: 'Json::FastWriter::~FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(166) : 参见“Json::FastWriter::~FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(91): warning C4996: 'Json::FastWriter::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(165) : 参见“Json::FastWriter::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(103): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(154): warning C4996: 'Json::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(163) : 参见“Json::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(154): warning C4996: 'Json::FastWriter::~FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(166) : 参见“Json::FastWriter::~FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(154): warning C4996: 'Json::FastWriter::FastWriter': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(165) : 参见“Json::FastWriter::FastWriter”的声明
+     1>d:\git_dams\dams\src\servermgr\messagehandler.cpp(158): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+                 d:\git_dams\dams\include\json\writer.h(180) : 参见“Json::FastWriter::write”的声明
+         CserverSession.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CClientSession.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\src\servermgr\cclientsession.cpp(175): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 12.0\vc\include\stdlib.h(937) : 参见“itoa”的声明
+         config.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         ServerEntry.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         ServerControl.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\src\servercontrol\servercontrol.cpp(246): warning C4800: “int”: 将值强制为布尔值“true”或“false”(性能警告)
+         crash.cpp
+         ResourceStorage.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         DeviceMgr.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\include\mysql\cppconn\sqlstring.h(39): warning C4251: “sql::SQLString::realStr”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLString”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(61): warning C4251: “sql::SQLException::sql_state”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(145): warning C4251: “sql::SQLUnsupportedOptionException::option”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 struct“sql::SQLUnsupportedOptionException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_driver.h(52): warning C4251: “sql::mysql::MySQL_Driver::proxy”: class“boost::scoped_ptr<sql::mysql::NativeAPI::NativeDriverWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Driver”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(175): warning C4251: “sql::mysql::MySQL_Connection::proxy”: class“boost::shared_ptr<sql::mysql::NativeAPI::NativeConnectionWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(179): warning C4251: “sql::mysql::MySQL_Connection::service”: class“boost::scoped_ptr<sql::mysql::MySQL_Statement>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(181): warning C4251: “sql::mysql::MySQL_Connection::intern”: class“boost::scoped_ptr<sql::mysql::MySQL_ConnectionData>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+         DeviceFactory.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         HikDevice.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\include\mysql\cppconn\sqlstring.h(39): warning C4251: “sql::SQLString::realStr”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLString”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(61): warning C4251: “sql::SQLException::sql_state”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 class“sql::SQLException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\cppconn\exception.h(145): warning C4251: “sql::SQLUnsupportedOptionException::option”: class“std::basic_string<char,std::char_traits<char>,std::allocator<char>>”需要有 dll 接口由 struct“sql::SQLUnsupportedOptionException”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_driver.h(52): warning C4251: “sql::mysql::MySQL_Driver::proxy”: class“boost::scoped_ptr<sql::mysql::NativeAPI::NativeDriverWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Driver”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(175): warning C4251: “sql::mysql::MySQL_Connection::proxy”: class“boost::shared_ptr<sql::mysql::NativeAPI::NativeConnectionWrapper>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(179): warning C4251: “sql::mysql::MySQL_Connection::service”: class“boost::scoped_ptr<sql::mysql::MySQL_Statement>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\include\mysql\mysql_connection.h(181): warning C4251: “sql::mysql::MySQL_Connection::intern”: class“boost::scoped_ptr<sql::mysql::MySQL_ConnectionData>”需要有 dll 接口由 class“sql::mysql::MySQL_Connection”的客户端使用
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(328): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(329): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(330): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(331): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(332): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+     1>d:\git_dams\dams\src\devicemgr\hikdevice.cpp(333): warning C4244: “=”: 从“DWORD”转换到“WORD”，可能丢失数据
+         DBmanager.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         sqlite3_db_helper.cpp
+         markup.cpp
+         Note: MBCS build (not UTF-8)
+         正在生成代码...
+     1>d:\git_dams\dams\src\devicemgr\dbmanager.cpp(64): warning C4715: “DeviceDbStorage::Init”: 不是所有的控件路径都返回值
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\HeaderFiles /I..\include\boost /I..\include\libevent /I..\include /I..\include\sqlite /I..\incude\mysql /I..\include\mysql /I..\include\device /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D MARKUP_STL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\include\sqlite\sqlite3.c
+         sqlite3.c
+     1>d:\git_dams\dams\include\sqlite\sqlite3.c(31052): warning C4996: 'GetVersionExA': 被声明为已否决
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(433) : 参见“GetVersionExA”的声明
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\git_DAMS\DAMS\DAMS_2.0\DAMS.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\libs\boost /LIBPATH:..\libs\libevent /LIBPATH:..\libs\json /LIBPATH:..\libs\mysql Ws2_32.lib libevent.lib lib_json.lib HCNetSDK.lib mysqlcppconn.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBCMT /MANIFEST /MANIFESTUAC:"level='requireAdministrator' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\git_DAMS\DAMS\DAMS_2.0\DAMS.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\git_DAMS\DAMS\DAMS_2.0\DAMS.lib" /MACHINE:X86 Debug\markup.obj
+         Debug\sqlite3.obj
+         Debug\sqlite3_db_helper.obj
+         Debug\DBmanager.obj
+         Debug\HikDevice.obj
+         Debug\DeviceFactory.obj
+         Debug\DeviceMgr.obj
+         Debug\ResourceStorage.obj
+         Debug\crash.obj
+         Debug\ServerControl.obj
+         Debug\ServerEntry.obj
+         Debug\config.obj
+         Debug\CClientSession.obj
+         Debug\CserverSession.obj
+         Debug\MessageHandler.obj
+         Debug\ServerMgr.obj
+         Debug\Logger.obj
+         Debug\utils.obj
+            正在创建库 D:\git_DAMS\DAMS\DAMS_2.0\DAMS.lib 和对象 D:\git_DAMS\DAMS\DAMS_2.0\DAMS.exp
+     1>lib_json.lib(json_reader.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib_json.lib(json_reader.obj)”或在“D:\git_DAMS\DAMS\DAMS_2.0\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>lib_json.lib(json_value.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib_json.lib(json_value.obj)”或在“D:\git_DAMS\DAMS\DAMS_2.0\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>lib_json.lib(json_writer.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“lib_json.lib(json_writer.obj)”或在“D:\git_DAMS\DAMS\DAMS_2.0\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+         DAMS.vcxproj -> D:\git_DAMS\DAMS\DAMS_2.0\DAMS.exe
+     1>已完成生成项目“D:\git_DAMS\DAMS\msvc\DAMS.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:01:16.08

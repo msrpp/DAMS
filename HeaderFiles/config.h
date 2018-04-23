@@ -3,7 +3,8 @@
 
 #include "markup/markup.h"
 #include "CommonHeader.h"
-
+#define OUT
+#define  IN
 
 static const char* DEFAULT_CONFIG = "./config.xml";
 

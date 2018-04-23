@@ -78,6 +78,9 @@
     <ClInclude Include="..\HeaderFiles\DBmanager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\HeaderFiles\ErrorDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ServerControl\ServerControl.cpp">

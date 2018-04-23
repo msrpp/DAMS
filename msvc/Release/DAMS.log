@@ -1,0 +1,22 @@
+﻿生成启动时间为 2018/3/21 14:53:35。
+     1>项目“D:\git_DAMS\DAMS\msvc\DAMS.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\HeaderFiles /I..\include\boost /I..\include\libevent /I..\include /I..\include\device /I..\include\sqlite /I"D:\lot组信息汇总\DAMS\include\sqlite" /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D MARKUP_STL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\DeviceMgr\HikDevice.cpp ..\src\DeviceMgr\DeviceMgr.cpp ..\src\ServerMgr\MessageHandler.cpp ..\src\ServerMgr\ServerMgr.cpp
+         HikDevice.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\headerfiles\devicemgr.h(8): fatal error C1083: 无法打开包括文件: “mysql_driver.h”: No such file or directory
+         DeviceMgr.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\headerfiles\devicemgr.h(8): fatal error C1083: 无法打开包括文件: “mysql_driver.h”: No such file or directory
+         MessageHandler.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\headerfiles\devicemgr.h(8): fatal error C1083: 无法打开包括文件: “mysql_driver.h”: No such file or directory
+         ServerMgr.cpp
+     1>d:\git_dams\dams\include\boost\log\detail\header.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>d:\git_dams\dams\headerfiles\devicemgr.h(8): fatal error C1083: 无法打开包括文件: “mysql_driver.h”: No such file or directory
+         正在生成代码...
+     1>已完成生成项目“D:\git_DAMS\DAMS\msvc\DAMS.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:08.99
