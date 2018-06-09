@@ -45,6 +45,8 @@ void MyLog::Init(string  dir)
 	{
 		dir = SetCurrentWorkDir();
 	}
+
+	dir = dir + "\\log";
 	if (boost::filesystem::exists(dir) == false)
 	{
 		boost::filesystem::create_directories(dir);

@@ -18,55 +18,62 @@ bool CConfig::LoadConfig(const char* filePath /*= DEFAULT_CONFIG*/)
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DevIp");
-		strDevIp = markup.GetData();
+		m_strDevIp = markup.GetData();
 	}
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DevPort");
-		strDevPort = markup.GetData().c_str();
+		m_strDevPort = markup.GetData().c_str();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("UsrName");
-		strUsrName = markup.GetData();
+		m_strUsrName = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("Passwd");
-		strPasswd = markup.GetData();
+		m_strPasswd = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DBHostName");
-		strDBHostName = markup.GetData();
+		m_strDBHostName = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DBHostUserName");
-		strDBHostUserName = markup.GetData();
+		m_strDBHostUserName = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DBHostPassword");
-		strDBHostPassword = markup.GetData();
+		m_strDBHostPassword = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("DBHostObject");
-		strDBHostObject = markup.GetData();
+		m_strDBHostObject = markup.GetData();
 	}
 
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("strPicSavePath");
-		strPicSavePath = markup.GetData();
+		m_strPicSavePath = markup.GetData();
 	}
+
+	if (markup.FindElem(NULL))
+	{
+		markup.FindElem("strFacePicSavePath");
+		m_strFacePicSavePath = markup.GetData();
+	}
+
 	if (markup.FindElem(NULL))
 	{
 		markup.FindElem("listenPort");

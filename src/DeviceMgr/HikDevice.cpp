@@ -81,151 +81,179 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 		LOG_INFO << "Event happens lcommand =  " << lCommand;
 	}
 
+	char chTime[256] = { 0 };
+	char chTimeDB[256] = { 0 };
+	time_t tlocalTime = time(NULL);
+	struct tm* pstTimer = localtime(&tlocalTime);
+
+	unsigned int dwY = pstTimer->tm_year + 1900;
+	unsigned int dwM = pstTimer->tm_mon + 1;
+	unsigned int dwD = pstTimer->tm_mday;
+	unsigned int dwH = pstTimer->tm_hour;
+	unsigned int dwMin = pstTimer->tm_min;
+	unsigned int dwSec = pstTimer->tm_sec;
+
+	//mod 修改时间格式
+	_snprintf(chTime, 256 - 1, "%4d%02d%02d%02d%02d%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
+	_snprintf(chTimeDB, 256 - 1, "%4d-%02d-%02d %02d:%02d:%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
+
 	switch (lCommand)
 	{
 	
 		case COMM_ITS_PLATE_RESULT:
 		{
-			  //车牌_时间_摄像机ID_图片数据
-			  NET_ITS_PLATE_RESULT* pAlarm = (NET_ITS_PLATE_RESULT*)pAlarmInfo;
+			//车牌_时间_摄像机ID_图片数据
+			NET_ITS_PLATE_RESULT* pAlarm = (NET_ITS_PLATE_RESULT*)pAlarmInfo;
 			  
-			  string strCarLicense = pAlarm->struPlateInfo.sLicense;
-			  //string strTime = (char*)pAlarm->struSnapFirstPicTime.wYear;
-			  char* pPic1 = (char*)pAlarm->struPicInfo[0].pBuffer;
-			  char* pPic2 = (char*)pAlarm->struPicInfo[1].pBuffer;
-			  DWORD pPic1Len = pAlarm->struPicInfo[0].dwDataLen;
-			  DWORD  pPic2Len = pAlarm->struPicInfo[1].dwDataLen;
+			string strCarLicense = pAlarm->struPlateInfo.sLicense;
 
-			  //log
-			  {
-				  LOG_INFO << "car  license info :  " << strCarLicense.c_str();
-				  LOG_INFO << "car  license  date len:  " << pPic1Len;
-				  LOG_INFO << "car  date len:  " << pPic2Len;
-				  LOG_INFO << "car  Pic num   " << pAlarm->dwPicNum;
-				  LOG_INFO << "car  DriveChan num   " << (int)pAlarm->byDriveChan;
-				  LOG_INFO << "car  Dir num   " << (int)pAlarm->byDir;
-				  LOG_INFO << "car  DetectType num   " << (int)pAlarm->byDetectType;
-				  LOG_INFO << "car  CarDirectionType num   " << (int)pAlarm->byCarDirectionType;
-				  LOG_INFO << "car  Vehice Color   " << (int)pAlarm->struVehicleInfo.byColor;
-				  LOG_INFO << "car  Vehice Logo   " << (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
-			  }
+			char* pPicPlate = (char*)pAlarm->struPicInfo[0].pBuffer;
+			DWORD pPic1Len = pAlarm->struPicInfo[0].dwDataLen;
+	
+			//log
+			{
+				LOG_INFO << "car  license info :  " << strCarLicense.c_str();
+				LOG_INFO << "car  license  date len:  " << pPic1Len;
+				LOG_INFO << "car  Pic num   " << pAlarm->dwPicNum;
+				LOG_INFO << "car  DriveChan num   " << (int)pAlarm->byDriveChan;
+				LOG_INFO << "car  Dir num   " << (int)pAlarm->byDir;
+				LOG_INFO << "car  DetectType num   " << (int)pAlarm->byDetectType;
+				LOG_INFO << "car  CarDirectionType num   " << (int)pAlarm->byCarDirectionType;
+				LOG_INFO << "car  Vehice Color   " << (int)pAlarm->struVehicleInfo.byColor;
+				LOG_INFO << "car  Vehice Logo   " << (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
+			}
 			  
-			  //Carpic name	    以下操作建议另起线程操作
-			  {
-				  //存图片
-				  char chTime[256] = { 0 };
-				  char chTimeDB[256] = { 0 };
-				  time_t tlocalTime = time(NULL);
-				  struct tm* pstTimer = localtime(&tlocalTime);
+			//Carpic name	    以下操作建议另起线程操作
+			{
+				//存图片
+				string strfolder = CConfig::get_mutable_instance().GetPicSavePath();
+				string strFileName1 = strfolder + "/" + "CarData_" + strCarLicense + "_"  + string(chTime)  + ".jpg";
+				FILE* pFile_Carpic = NULL;
+				CClientSession session;
+				string retBody;
+				string strRetUrl;
+				if (CConfig::get_mutable_instance().GetEnablePicSave()==0)
+				{
 
-				  unsigned int dwY = pstTimer->tm_year + 1900;
-				  unsigned int dwM = pstTimer->tm_mon + 1;
-				  unsigned int dwD = pstTimer->tm_mday;
-				  unsigned int dwH = pstTimer->tm_hour;
-				  unsigned int dwMin = pstTimer->tm_min;
-				  unsigned int dwSec = pstTimer->tm_sec;
+					if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getPicUrl().c_str(), pPicPlate, pPic1Len, retBody))
+					{
+						Json::Value root;
+						Json::Reader reader;
+						try{
+							if (reader.parse(retBody, root))
+							{
+								//strRetUrl = root["imageUrl"].asString();
 
-				  //mod 修改时间格式
-				  _snprintf(chTime, 256 - 1, "%4d%02d%02d%02d%02d%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
-				  _snprintf(chTimeDB, 256 - 1, "%4d-%02d-%02d %02d:%02d:%02d", dwY, dwM, dwD, dwH, dwMin, dwSec);
+								Json::Value strRetUrl1 = root["data"];
+								string retBodyEx = strRetUrl1["imageUrl"].asString();
+								strRetUrl = retBodyEx;
+							}
+							else
+							{
+								strRetUrl = string("recv data error");
+							}
 
-				  string strfolder = CConfig::get_mutable_instance().GetPicSavePath();
-				  string strFileName1 = strfolder + "/" + "CarData_" + strCarLicense + "_"  + string(chTime)  + ".jpg";
-				  FILE* pFile_Carpic = NULL;
-				  CClientSession session;
-				  string retBody;
-				  string strRetUrl;
-				  if (CConfig::get_mutable_instance().GetEnablePicSave()==0)
-				  {
+							{
+								LOG_INFO << "car  Pic path Ex  " << strRetUrl.c_str();
+							}
+						}
+						catch (...)
+						{
+							strRetUrl = string("recv data error");
+							LOG_WARNING << "parse ret body failed";
+						}
 
-					  if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getPicUrl().c_str(), pPic1, pPic1Len, retBody))
-					  {
-						  Json::Value root;
-						  Json::Reader reader;
-						  try{
-							  if (reader.parse(retBody, root))
-							  {
-								  //strRetUrl = root["imageUrl"].asString();
-
-								  Json::Value strRetUrl1 = root["data"];
-								  string retBodyEx = strRetUrl1["imageUrl"].asString();
-								  strRetUrl = retBodyEx;
-							  }
-							  else
-							  {
-								  strRetUrl = string("recv data error");
-							  }
-
-							  {
-								  LOG_INFO << "car  Pic path Ex  " << strRetUrl.c_str();
-							  }
-						  }
-						  catch (...)
-						  {
-							  strRetUrl = string("recv data error");
-							  LOG_WARNING << "parse ret body failed";
-						  }
-
-					  }
-
-				  }
+					}
+				}
 				  
 
-				  {
-					  LOG_INFO << "car  Pic path   " << strFileName1.c_str();
-				  }
+				{
+					LOG_INFO << "car  Pic path   " << strFileName1.c_str();
+				}
 
 
-				  pFile_Carpic = fopen(strFileName1.c_str(), "wb");
-				  if (pFile_Carpic != NULL&&pPic1Len>0)
-				  {
-					  fwrite(pPic1, pPic1Len, 1, pFile_Carpic);
-				  }
+				pFile_Carpic = fopen(strFileName1.c_str(), "wb");
+				if (pFile_Carpic != NULL&&pPic1Len>0)
+				{
+					fwrite(pPicPlate, pPic1Len, 1, pFile_Carpic);
+				}
 
-				  if (pFile_Carpic != NULL)
-				  {
-					  fclose(pFile_Carpic);
-				  }
+				if (pFile_Carpic != NULL)
+				{
+					fclose(pFile_Carpic);
+				}
 
-				  {
-					  LOG_INFO << "start insert db   " ;
+				{
+					LOG_INFO << "start insert db   " ;
 
-				  }
-				  //写数据库
-				  DB_DATA_PLATEDATA  stPlateData;
-				  stPlateData.strCaptureTime = string(chTimeDB);
-				  stPlateData.strCarPlateData = strCarLicense;
-				  stPlateData.iCamerID = (int)pAlarm->byChanIndex;
-				  stPlateData.strPicUrl = strRetUrl;
-				  stPlateData.iDirChanNum = (int)pAlarm->byDriveChan;
-				  stPlateData.strIp = pAlarmer->sDeviceIP/*CConfig::get_mutable_instance().GetDevIp()*/;
+				}
+				//写数据库
+				DB_DATA_PLATEDATA  stPlateData;
+				stPlateData.strCaptureTime = string(chTimeDB);
+				stPlateData.strCarPlateData = strCarLicense;
+				stPlateData.iCamerID = (int)pAlarm->byChanIndex;
+				stPlateData.strPicUrl = strRetUrl;
+				stPlateData.iDirChanNum = (int)pAlarm->byDriveChan;
+				stPlateData.strIp = pAlarmer->sDeviceIP/*CConfig::get_mutable_instance().GetDevIp()*/;
 				  
-				  switchColorData(stPlateData.strVehiceColor, pAlarm->struVehicleInfo.byColor);
-				  stPlateData.iVehiceLogo = (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
-				  {
-					      LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
-						  LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
-						  LOG_INFO << "car  iCamerID   " << stPlateData.iCamerID;
-				  }
-				  CDeviceMgr::get_mutable_instance().AddPlateData2DB(stPlateData);
+				switchColorData(stPlateData.strVehiceColor, pAlarm->struVehicleInfo.byColor);
+				stPlateData.iVehiceLogo = (int)pAlarm->struVehicleInfo.wVehicleLogoRecog;
+				{
+					LOG_INFO << "car  strCaptureTime   " << stPlateData.strCaptureTime.c_str();
+					LOG_INFO << "car  strCarPlateData   " << stPlateData.strCarPlateData.c_str();
+					LOG_INFO << "car  iCamerID   " << stPlateData.iCamerID;
+				}
+				CDeviceMgr::get_mutable_instance().AddPlateData2DB(stPlateData);
 	  
-			  }
-			
+			}
+		}
+		break;
+		case COMM_UPLOAD_FACESNAP_RESULT:
+		{
+			NET_VCA_FACESNAP_RESULT* pAlarm = (NET_VCA_FACESNAP_RESULT*)pAlarmInfo;
+			FILE* pFileFace = NULL;
+			FILE* pFileBackGround = NULL;
+			int iLenFace = 0;
+			int iLenBackGround = 0;
 
-#if 0   //车牌图片信息  （设备部支持）
-			  string strFileName2 = "CarPlateData" + strCarLicense + ".jpg";
-			  FILE* pFile2 = NULL;
-			  pFile2 = fopen(strFileName2.c_str(), "wb");
-			  if (pFile2 != NULL&&pPic2Len>0)
-			  {
-				  fwrite(pPic2, pPic2Len, 1, pFile2);
-			  }
-			  if (pFile2 != NULL)
-			  {
-				  fclose(pFile2);
+			char* pFace = (char*)pAlarm->pBuffer1;
+			iLenFace = pAlarm->dwFacePicLen;
 
-			  }
-#endif
+			char* pFaceGround = (char*)pAlarm->pBuffer2;
+			iLenBackGround = pAlarm->dwBackgroundPicLen;
+			string strfolder = CConfig::get_mutable_instance().GetFacePicSavePath();
+
+			string strFileNameFace = strfolder + "/" + "FaceData_" + "_" + string(chTime) + ".jpg";
+			string strFileNameBackGround = strfolder + "/" + "BackGroundData_" + "_" + string(chTime) + ".jpg";
+
+			//小图
+			pFileFace = fopen(strFileNameFace.c_str(), "wb");
+			if (pFileFace != NULL && iLenFace>0)
+			{
+				fwrite(pFace, iLenFace, 1, pFileFace);
+			}
+
+			if (pFileFace != NULL)
+			{
+				fclose(pFileFace);
+			}
+
+			//大图
+			pFileBackGround = fopen(strFileNameBackGround.c_str(), "wb");
+			if (pFileBackGround != NULL && iLenBackGround>0)
+			{
+				fwrite(pFaceGround, iLenBackGround, 1, pFileBackGround);
+			}
+
+			if (pFileBackGround != NULL)
+			{
+				fclose(pFileBackGround);
+			}
+		}
+		break;
+		case COMM_ALARM_PDC:
+		{
+			NET_DVR_PDC_ALRAM_INFO* pAlarm = (NET_DVR_PDC_ALRAM_INFO*)pAlarmInfo;
 		}
 		break;
 	default:

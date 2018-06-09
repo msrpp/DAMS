@@ -300,7 +300,21 @@ int CDeviceMgr::AddPlateData2DB(DB_DATA_PLATEDATA& stPlateData)
 			LOG_INFO << "err: " << iErr;
 			if (iErr == 2006 || iErr == 1046)
 			{
-				pDataConnect->reconnect();
+				exit(0);
+				//pDataConnect->reconnect();
+				string strDBHostName = CConfig::get_mutable_instance().GetDBHostName();
+				string strDBHostUserName = CConfig::get_mutable_instance().GetDBHostUserName();
+				string strDBPassWord = CConfig::get_mutable_instance().GetDBHostPassword();
+				string strDBHostObject = CConfig::get_mutable_instance().GetDBHostObject();
+
+				pDataConnect->close();
+				delete pDataConnect;
+				pDataConnect = pDataDriver->connect(strDBHostName.c_str(), strDBHostUserName.c_str(), strDBPassWord.c_str());
+
+				if (NULL != pStmt)
+					delete pStmt;
+				pStmt = pDataConnect->createStatement();
+	
 			}
 		}
 	}

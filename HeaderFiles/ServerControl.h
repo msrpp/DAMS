@@ -20,6 +20,8 @@ public:
 	int RunServer(IServerMsgNotify* server);
 	int Wait();
 	int Console(IServerMsgNotify* server);
+	void startService();
+	void stopService();
 public:
 	void ReportSvcStatus(DWORD dwCurrentState, DWORD dwWin32ExitCode, DWORD dwWaitHint);
 	int _OnRun();

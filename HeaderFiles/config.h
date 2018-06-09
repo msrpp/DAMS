@@ -13,35 +13,39 @@ class CConfig :public boost::serialization::singleton<CConfig>
 {
 public:
 	bool LoadConfig(const char* filePath = DEFAULT_CONFIG);
-	string	GetDevIp() { return strDevIp; }
-	string 	GetDevPort() { return strDevPort; }
-	string	GetUsrName() { return strUsrName; }
-	string	GetPasswd() { return strPasswd; }
+	string	GetDevIp()       { return m_strDevIp; }
+	string 	GetDevPort()     { return m_strDevPort; }
+	string	GetUsrName()     { return m_strUsrName; }
+	string	GetPasswd()      { return m_strPasswd; }
 
-	string	GetDBHostName() { return strDBHostName; }
-	string 	GetDBHostUserName() { return strDBHostUserName; }
-	string	GetDBHostPassword() { return strDBHostPassword; }
-	string	GetDBHostObject() { return strDBHostObject; }
-	string GetServerName(){ return m_serverName; }
-	string	GetPicSavePath() { return strPicSavePath; }
-	int getListenPort(){ return m_listenPort; }
-	string getPicUrl(){ return m_picUrl; }
-	int	GetEnablePicSave() { return m_iEnableSavePic; }
+	string	GetDBHostName()  { return m_strDBHostName; }
+	string 	GetDBHostUserName() { return m_strDBHostUserName; }
+	string	GetDBHostPassword() { return m_strDBHostPassword; }
+	string	GetDBHostObject()   { return m_strDBHostObject; }
+	string GetServerName()      { return m_serverName; }
+	string	GetPicSavePath()    { return m_strPicSavePath; }
+	int getListenPort()         { return m_listenPort; }
+	string getPicUrl()          { return m_picUrl; }
+	int	GetEnablePicSave()      { return m_iEnableSavePic; }
+
+	string	GetFacePicSavePath(){ return m_strFacePicSavePath; }
+
 private:
-	string  strDevIp;
-	string  strDevPort;
-	string strUsrName;
-	string strPasswd;
+	string  m_strDevIp;
+	string  m_strDevPort;
+	string  m_strUsrName;
+	string  m_strPasswd;
 
-	string  strDBHostName;
-	string  strDBHostUserName;
-	string strDBHostPassword;
-	string strDBHostObject;
+	string  m_strDBHostName;
+	string  m_strDBHostUserName;
+	string  m_strDBHostPassword;
+	string  m_strDBHostObject;
 
-	string strPicSavePath;
-	int m_listenPort;
-	string m_serverName;
-	string m_picUrl;
+	string  m_strPicSavePath;
+	string  m_strFacePicSavePath;
+	int     m_listenPort;
+	string  m_serverName;
+	string  m_picUrl;
 
 	int m_iEnableSavePic;
 };

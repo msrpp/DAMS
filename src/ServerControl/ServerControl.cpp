@@ -17,7 +17,12 @@
 // 
 // }
 
-
+#define SAFE_CALL(FuncCall, ErrorCode)		                        \
+	if (FuncCall == ErrorCode) {			                        \
+		cout << #FuncCall " error, code:" << GetLastError()         \
+             << " ,line:" << __LINE__ << "\n"; 		                \
+		exit(-1);							                        \
+			}
 
 CServerControl::CServerControl()
 {
@@ -43,9 +48,9 @@ void __stdcall serverControl(DWORD params)
 	CServerControl::get_mutable_instance().ReportSvcStatus(params, NO_ERROR, 0);
 
 }
-VOID __stdcall mmServerEntry(
+VOID WINAPI mmServerEntry(
 	DWORD   dwNumServicesArgs,
-	LPWSTR  *lpServiceArgVectors
+	char** lpServiceArgVectors
 	)
 {
 	LOG_INFO << "entry mmServerEntry func";
@@ -88,20 +93,97 @@ void CServerControl::ReportSvcStatus(DWORD dwCurrentState,
 	SetServiceStatus(gSvcStatusHandle, &gSvcStatus);
 }
 
+void CServerControl::startService()
+{
+	auto scmHandle = OpenSCManagerW(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	SAFE_CALL(scmHandle, NULL);
+
+	auto serviceHandle = OpenServiceW(scmHandle,
+		L"mmserver",
+		SERVICE_ALL_ACCESS);
+	SAFE_CALL(serviceHandle, NULL);
+
+	SERVICE_STATUS serviceStatus;
+	SAFE_CALL(QueryServiceStatus(serviceHandle, &serviceStatus), 0);
+	if (serviceStatus.dwCurrentState == SERVICE_START &&
+		serviceStatus.dwCurrentState != SERVICE_START_PENDING)
+		return;
+	/*****************************/
+	SERVICE_FAILURE_ACTIONS sdBuf = { 0 };
+	BOOL bSuccess = TRUE;
+	sdBuf.lpRebootMsg = NULL;
+	sdBuf.dwResetPeriod = 3600 * 24;
+
+	SC_ACTION action[3];
+
+	action[0].Delay = 60 * 1000;
+	action[0].Type = SC_ACTION_RESTART;
+
+	action[1].Delay = 0;
+	action[1].Type = SC_ACTION_RESTART;
+	action[2].Delay = 0;
+	action[2].Type = SC_ACTION_RESTART;
+
+	sdBuf.cActions = 3;
+	sdBuf.lpsaActions = action;
+	sdBuf.lpCommand = NULL;
+
+	if (!ChangeServiceConfig2(
+		serviceHandle,
+		SERVICE_CONFIG_FAILURE_ACTIONS,
+		&sdBuf))
+		cout << "err config" << endl;
+	
+
+	SAFE_CALL(StartServiceW(serviceHandle, 0, NULL), FALSE);
+	StartServiceW(serviceHandle, 0, NULL);
+
+	CloseServiceHandle(scmHandle);
+	CloseServiceHandle(serviceHandle);
+	
+}
+
+
+void CServerControl::stopService()
+{
+	auto scmHandle = OpenSCManagerW(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	SAFE_CALL(scmHandle, NULL);
+
+	auto serviceHandle = OpenServiceW(scmHandle,
+		L"mmserver",
+		SERVICE_ALL_ACCESS);
+	SAFE_CALL(serviceHandle, NULL);
+
+	SERVICE_STATUS serviceStatus;
+	SAFE_CALL(QueryServiceStatus(serviceHandle, &serviceStatus), 0);
+	if (serviceStatus.dwCurrentState == SERVICE_RUNNING) {
+		SAFE_CALL(ControlService(serviceHandle, SERVICE_CONTROL_STOP, &serviceStatus), 0);
+		SAFE_CALL(serviceStatus.dwCurrentState, NO_ERROR);
+
+		do {
+			SAFE_CALL(QueryServiceStatus(serviceHandle, &serviceStatus), 0);
+			Sleep(1000);
+		} while (serviceStatus.dwCurrentState != SERVICE_STOPPED);
+	}
+
+	CloseServiceHandle(scmHandle);
+	CloseServiceHandle(serviceHandle);
+}
 
 int CServerControl::RunServer(IServerMsgNotify* server)
 {
+	
 	m_pServer = server;
 /*	CServerControl::get_mutable_instance()._OnRun();*/
-	const SERVICE_TABLE_ENTRYW entryTable[] =
+	const SERVICE_TABLE_ENTRY entryTable[] =
 	{
-		{ (LPWSTR)m_szServerName, mmServerEntry },
+		{ (LPSTR)m_szServerName, mmServerEntry },
 		{ NULL, NULL },
 	};
-	if (!StartServiceCtrlDispatcher((CONST SERVICE_TABLE_ENTRYA*)entryTable))
+	if (!StartServiceCtrlDispatcher(entryTable))
 	{
 		int iErr = GetLastError();
-		//LOG_ERROR << "StartServiceCtrlDispatcher failed system err " << iErr;
+		LOG_WARNING << "StartServiceCtrlDispatcher failed system err " << iErr;
 		return iErr;
 	}
 	m_hSvcStopEvent = CreateEvent(
@@ -110,7 +192,7 @@ int CServerControl::RunServer(IServerMsgNotify* server)
 		FALSE,   // not signaled  
 		NULL);
 
-
+	
 	return 0;
 }
 

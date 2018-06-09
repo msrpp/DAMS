@@ -37,7 +37,11 @@ int main(int argsc,char* argsv[])
 	pController->Init(serverName.c_str());
 	if (strcmp(argsv[1],"install") == 0)
 	{
-		return pController->Install();
+		pController->Install();
+		pController->startService();
+		
+		return 0;
+		
 	}
 	else if (strcmp(argsv[1], "uninstall") == 0)
 	{
