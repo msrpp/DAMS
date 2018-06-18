@@ -88,6 +88,24 @@ bool CConfig::LoadConfig(const char* filePath /*= DEFAULT_CONFIG*/)
 
 	if (markup.FindElem(NULL))
 	{
+		markup.FindElem("picFaceUrl");
+		m_picFaceUrl = markup.GetData();
+	}
+
+	if (markup.FindElem(NULL))
+	{
+		markup.FindElem("picBKGUrl");
+		m_BKGUrl = markup.GetData();
+	}
+
+	if (markup.FindElem(NULL))
+	{
+		markup.FindElem("picIntrusionUrl");
+		m_picIntrusionUrl = markup.GetData();
+	}
+
+	if (markup.FindElem(NULL))
+	{
 		markup.FindElem("enablePicSave");
 		m_iEnableSavePic = atoi(markup.GetData().c_str());
 	}

@@ -226,6 +226,79 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 			string strFileNameFace = strfolder + "/" + "FaceData_" + "_" + string(chTime) + ".jpg";
 			string strFileNameBackGround = strfolder + "/" + "BackGroundData_" + "_" + string(chTime) + ".jpg";
 
+			CClientSession session;
+			string retBody;
+			string strRetUrl;
+
+			if (CConfig::get_mutable_instance().GetEnablePicSave() == 0)
+			{
+
+				if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getPicFaceUrl().c_str(), pFace, iLenFace, retBody))
+				{
+					Json::Value root;
+					Json::Reader reader;
+					try{
+						if (reader.parse(retBody, root))
+						{
+							//strRetUrl = root["imageUrl"].asString();
+
+							Json::Value strRetUrl1 = root["data"];
+							string retBodyEx = strRetUrl1["imageUrl"].asString();
+							strRetUrl = retBodyEx;
+						}
+						else
+						{
+							strRetUrl = string("recv data error");
+						}
+
+						{
+							LOG_INFO << "car  Pic path Ex  " << strRetUrl.c_str();
+						}
+					}
+					catch (...)
+					{
+						strRetUrl = string("recv data error");
+						LOG_WARNING << "parse ret body failed";
+					}
+
+				}
+			}
+
+			if (CConfig::get_mutable_instance().GetEnablePicSave() == 0)
+			{
+
+				if (0 == session.http_client_short_link(CConfig::get_mutable_instance().getBKGUrl().c_str(), pFaceGround, iLenFace, retBody))
+				{
+					Json::Value root;
+					Json::Reader reader;
+					try{
+						if (reader.parse(retBody, root))
+						{
+							//strRetUrl = root["imageUrl"].asString();
+
+							Json::Value strRetUrl1 = root["data"];
+							string retBodyEx = strRetUrl1["imageUrl"].asString();
+							strRetUrl = retBodyEx;
+						}
+						else
+						{
+							strRetUrl = string("recv data error");
+						}
+
+						{
+							LOG_INFO << "car  Pic path Ex  " << strRetUrl.c_str();
+						}
+					}
+					catch (...)
+					{
+						strRetUrl = string("recv data error");
+						LOG_WARNING << "parse ret body failed";
+					}
+
+				}
+			}
+
+
 			//Ð¡Í¼
 			pFileFace = fopen(strFileNameFace.c_str(), "wb");
 			if (pFileFace != NULL && iLenFace>0)
@@ -248,6 +321,13 @@ BOOL CALLBACK HIKMSGCallBack(LONG lCommand, NET_DVR_ALARMER *pAlarmer, char *pAl
 			if (pFileBackGround != NULL)
 			{
 				fclose(pFileBackGround);
+			}
+
+						//´óÍ¼
+			pFileBackGround = fopen(strFileNameBackGround.c_str(), "wb");
+			if (pFileBackGround != NULL && iLenBackGround>0)
+			{
+				fwrite(pFaceGround, iLenBackGround, 1, pFileBackGround);
 			}
 		}
 		break;

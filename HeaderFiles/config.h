@@ -29,7 +29,9 @@ public:
 	int	GetEnablePicSave()      { return m_iEnableSavePic; }
 
 	string	GetFacePicSavePath(){ return m_strFacePicSavePath; }
-
+	string getPicFaceUrl()          { return m_picFaceUrl; }
+	string getBKGUrl()          { return m_BKGUrl; }
+	string getpicIntrusionUrl()          { return m_picIntrusionUrl; }
 private:
 	string  m_strDevIp;
 	string  m_strDevPort;
@@ -46,8 +48,10 @@ private:
 	int     m_listenPort;
 	string  m_serverName;
 	string  m_picUrl;
-
-	int m_iEnableSavePic;
+	string  m_picFaceUrl;
+	string  m_BKGUrl;
+	string  m_picIntrusionUrl;
+	int     m_iEnableSavePic;
 };
 
 

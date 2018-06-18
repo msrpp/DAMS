@@ -1,0 +1,3 @@
+[2018-06-04 19:29:45.420864] [0x00001ce4 [00:00:00int __cdecl main(int,char *[]) (d:\code_proj\dams\src\servercontrol\serverentry.cpp:52)] [info] service start to run now
+[2018-06-04 19:29:45.425868] [0x00001ce4 [00:00:00int __cdecl main(int,char *[]) (d:\code_proj\dams\src\servercontrol\serverentry.cpp:52)->int __thiscall CServerControl::RunServer(class IServerMsgNotify *) (d:\code_proj\dams\src\servercontrol\servercontrol.cpp:186)] [warning] StartServiceCtrlDispatcher failed system err 1063
+[2018-06-04 19:29:45.425868] [0x00001ce4 [00:00:00int __cdecl main(int,char *[]) (d:\code_proj\dams\src\servercontrol\serverentry.cpp:52)->int __cdecl main(int,char *[]) (d:\code_proj\dams\src\servercontrol\serverentry.cpp:55)] [info] service is running and wait for exit

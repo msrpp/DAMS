@@ -12,7 +12,10 @@
 <DBHostObject>alphe</DBHostObject>
 <!--路径格式为 ./Pic方式 或者 D:/lot_info/DAMS/Debug/Pic 需要手动创建文件夹 注意斜杠方向-->
 <strPicSavePath>./Pic</strPicSavePath>
+<strFacePicSavePath>./PicFace</strFacePicSavePath>
 <listenPort>5555</listenPort>
-<picUrl>http://127.0.0.1:5555/?abc=1213</picUrl>
+<picUrl>http://10.97.174.143:38080/ditreceivedata/image/uploadImage</picUrl>
+<picFaceUrl>http://10.97.174.143:38080/ditreceivedata/image/uploadFaceImage</picFaceUrl>
+<picFaceUrl>http://10.97.174.143:38080/ditreceivedata/image/uploadBKGImage</picFaceUrl>
 <enablePicSave>0</enablePicSave>
 </Config>
