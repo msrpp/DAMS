@@ -1,2 +1,3 @@
 # DAMS
-a server to connect devices
+a simply extendible framework c++ server for devices manager,it's only run on win yet.
+
